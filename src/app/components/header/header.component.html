@@ -1,0 +1,16 @@
+<header>
+    <div class="logo">
+      <h1>Clinica Virtual</h1>
+    </div>
+    <div class="nav">
+      <nav *ngIf="isLoggedIn">
+        <span>Bienvenido, {{ userName }} ({{ userRole }})</span>
+        <button (click)="onLogout()">Cerrar sesión</button>
+      </nav>
+      <nav *ngIf="!isLoggedIn">
+        <button routerLink="/login">Iniciar sesión</button>
+        <button routerLink="/register">Registrarse</button>
+      </nav>
+    </div>
+  </header>
+  

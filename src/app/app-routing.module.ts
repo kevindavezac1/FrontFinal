@@ -1,11 +1,13 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { InicioComponent } from './components/pages/inicio/inicio.component';
-import { PopupLoginComponent } from './components/layout/PopuoLogin/popup-login/popup-login.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HeaderComponent } from './components/header/header.component';
 
 const routes: Routes = [
-  { path: '', component: InicioComponent }, 
-  { path: 'popup', component: PopupLoginComponent}
+  { path: '', component: HeaderComponent }, // Página principal
+  { path: 'login', component: LoginComponent }, // Ruta para el login
+  { path: 'register', component: RegisterComponent }, // Ruta para el registro
 ];
 
 @NgModule({

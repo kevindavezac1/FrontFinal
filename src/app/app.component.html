@@ -1,1 +1,21 @@
+<div class="header">
+  <h1>Bienvenido a la clínica virtual</h1>
+  <div *ngIf="isLoggedIn; else loginBlock">
+    <span>Hola, {{ userName }}</span>
+    <button (click)="onLogout()">Cerrar sesión</button>
+  </div>
+  <ng-template #loginBlock>
+    <button (click)="onLogin()">Iniciar sesión</button>
+  </ng-template>
+</div>
+
+<div class="content">
+  <h2 *ngIf="isLoggedIn">Haz click en alguna de las funciones principales para acceder</h2>
+  <div *ngIf="!isLoggedIn">
+    <p>Inicia sesión para acceder a las funcionalidades principales.</p>
+    <p>Como paciente registrado puedes solicitar turnos, ver tus turnos agendados y modificar tus datos personales.</p>
+  </div>
+</div>
+
+<!-- Aquí va router-outlet -->
 <router-outlet></router-outlet>

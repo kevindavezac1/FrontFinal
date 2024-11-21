@@ -1,0 +1,11 @@
+/* header.component.css */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f1f1f1;
+  }
+  button {
+    margin: 5px;
+  }
+  
