@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';  // Asegúrate de importar FormsModule
 import { RouterModule } from '@angular/router';
+import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,8 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     LoginComponent,
     RegisterComponent,
+    BienvenidaComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,77 +1,67 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:4000/api';
-  private loggedInSubject = new BehaviorSubject<boolean>(false);
-  isLoggedIn$ = this.loggedInSubject.asObservable();
+  private apiUrl = 'http://localhost:4000/api'; // Base URL del backend
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this.hasToken()); // Comprueba si hay un token al iniciar
+  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {}
+
+  login(username: string, password: string): void {
+    const loginData = { usuario: username, password };
+    this.http.post<{ token: string }>(`${this.apiUrl}/login`, loginData).subscribe(
+      response => {
+        localStorage.setItem('token', response.token);
+        this.isLoggedInSubject.next(true); // Actualiza el estado de autenticación
+        this.router.navigate(['/']);
+      },
+      error => {
+        console.error('Error al iniciar sesión', error);
+      }
+    );
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.isLoggedInSubject.next(false); // Actualiza el estado de autenticación
+    this.router.navigate(['']);
+  }
+
+  getUserName(): string {
     const token = localStorage.getItem('token');
     if (token) {
-      this.loggedInSubject.next(true); // El usuario está logueado si hay token
-    } else {
-      this.loggedInSubject.next(false); // Inicializa como no logueado si no hay token
+      const decodedToken = this.decodeToken(token);
+      return decodedToken?.nombre || ''; // Asegúrate de que 'nombre' exista en tu token
+    }
+    return '';
+  }
+
+  getUserRoleFromToken(): string {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.decodeToken(token);
+      return decodedToken?.role || '';
+    }
+    return '';
+  }
+
+  private decodeToken(token: string): any {
+    try {
+      const payload = token.split('.')[1];
+      return JSON.parse(atob(payload));
+    } catch (e) {
+      console.error('Error decoding token', e);
+      return null;
     }
   }
 
-  login(userName: string, password: string) {
-    const loginData = { userName, password };
-  
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, loginData)
-      .pipe(
-        catchError(error => {
-          console.error('Error de autenticación capo', error);
-          throw error;
-        })
-      ).subscribe(response => {
-        const token = response.token;
-        localStorage.setItem('token', token);
-        this.loggedInSubject.next(true);
-        this.router.navigate(['/']); // <- Esto solo ocurre tras un login exitoso
-      });
+  private hasToken(): boolean {
+    return !!localStorage.getItem('token'); // Devuelve true si existe el token
   }
-  
-
-  logout() {
-    localStorage.removeItem('token');
-    this.loggedInSubject.next(false); // Cambiar el estado a no logueado
-    this.router.navigate(['/']); // Redirigir a la pantalla principal
-  }
-
-  getUserName() {
-    // Puedes obtener el nombre del usuario desde el token si lo necesitas
-    // Aquí solo regresamos un valor estático por simplicidad
-    return localStorage.getItem('userName') || '';
-  }
-
-    // Método privado para decodificar el token
-    private decodeToken(token: string): any {
-      try {
-        return jwt_decode(token);
-      } catch (error) {
-        console.error('Error decoding token', error);
-        return null;
-      }
-    }
-  
-    // Método público para obtener el rol desde el token
-    public getUserRoleFromToken(): string {
-      const token = localStorage.getItem('token');
-      if (token) {
-        const decodedToken = this.decodeToken(token);  // Llamamos al método privado internamente
-        return decodedToken?.role || '';
-      }
-      return '';
-    }
 }
-function jwt_decode(token: string): any {
-  throw new Error('Function not implemented.');
-}
-

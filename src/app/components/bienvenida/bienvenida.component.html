@@ -1,0 +1,27 @@
+<!-- Pantalla de bienvenida para el usuario no logueado -->
+<div *ngIf="!isLoggedIn; else loggedInContent">
+    <header>
+      <h1>Bienvenido a la Clínica Virtual</h1>
+    </header>
+  
+    <div class="main-content">
+      <p>Inicia sesión para acceder a las funcionalidades principales.</p>
+      <p>Como paciente registrado puedes solicitar turnos, ver tus turnos agendados y modificar tus datos personales.</p>
+      <button routerLink="/login">Iniciar sesión</button>
+      <button routerLink="/register">Registrarse</button>
+    </div>
+  </div>
+  
+  <!-- Pantalla de bienvenida para el usuario logueado -->
+  <ng-template #loggedInContent>
+    <header>
+      <h1>Bienvenido de nuevo, {{ userName }}!</h1>
+    </header>
+  
+    <div class="main-content">
+      <p>Haz click en alguna de las funciones principales para acceder:</p>
+      <button routerLink="/profile">Ver perfil</button>
+      <button routerLink="/appointments">Mis turnos</button>
+    </div>
+  </ng-template>
+  

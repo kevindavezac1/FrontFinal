@@ -1,16 +1,18 @@
 <header>
-    <div class="logo">
-      <h1>Clinica Virtual</h1>
-    </div>
-    <div class="nav">
-      <nav *ngIf="isLoggedIn">
-        <span>Bienvenido, {{ userName }} ({{ userRole }})</span>
-        <button (click)="onLogout()">Cerrar sesión</button>
-      </nav>
-      <nav *ngIf="!isLoggedIn">
+  <div class="logo">
+    <!-- Si el usuario NO está logueado, el texto será un enlace que redirige a Bienvenida -->
+    <h1><a *ngIf="!isLoggedIn" routerLink="/">Clinica Virtual</a><span *ngIf="isLoggedIn">Clinica Virtual</span></h1>
+  </div>
+  <div class="nav">
+    <nav *ngIf="isLoggedIn; else notLoggedIn">
+      <span>Bienvenido, {{ userName }} ({{ userRole }})</span>
+      <button (click)="onLogout()">Cerrar sesión</button>
+    </nav>
+    <ng-template #notLoggedIn>
+      <nav>
         <button routerLink="/login">Iniciar sesión</button>
         <button routerLink="/register">Registrarse</button>
       </nav>
-    </div>
-  </header>
-  
+    </ng-template>
+  </div> 
+</header>
