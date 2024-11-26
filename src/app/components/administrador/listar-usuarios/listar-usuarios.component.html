@@ -1,0 +1,43 @@
+<!-- listar-usuarios.component.html -->
+
+<div>
+    <h2>Lista de Usuarios</h2>
+  
+    <!-- Filtros -->
+    <div>
+      <input type="text" [(ngModel)]="filters.nombre" placeholder="Filtrar por nombre" />
+      <input type="text" [(ngModel)]="filters.apellido" placeholder="Filtrar por apellido" />
+      <select [(ngModel)]="filters.rol">
+        <option value="">Filtrar por rol</option>
+        <option value="Administrador">Administrador</option>
+        <option value="Paciente">Paciente</option>
+        <!-- Agrega más roles según sea necesario -->
+      </select>
+      <button (click)="applyFilters()">Aplicar Filtros</button>
+    </div>
+  
+    <!-- Tabla de usuarios -->
+    <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Rol</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.apellido }}</td>
+            <td>{{ user.rol }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.telefono }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+    <p *ngIf="users.length === 0">No hay usuarios que coincidan con los filtros.</p>
+  </div>
+  

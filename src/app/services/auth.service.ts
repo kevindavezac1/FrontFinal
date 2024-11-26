@@ -4,12 +4,6 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import jwt_decode from 'jwt-decode';
 
-interface DecodedToken {
-  nombre?: string;
-  rol?: string;
-  exp?: number; // Fecha de expiración opcional
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -25,9 +19,7 @@ export class AuthService {
     this.http.post<{ jwt: string }>(`${this.apiUrl}/login`, loginData).subscribe(
       (response) => {
         if (response.jwt) {
-          console.log('Token recibido:', response.jwt); // Verifica si el token se recibe
           localStorage.setItem('token', response.jwt); // Guarda el token
-          console.log('Token guardado en localStorage:', localStorage.getItem('token')); // Verifica si se guarda correctamente
           this.isLoggedInSubject.next(true); // Actualiza el estado de autenticación
           this.router.navigate(['/']); // Redirige al home o página principal
         } else {
@@ -40,7 +32,6 @@ export class AuthService {
       }
     );
   }
-  
 
   logout(): void {
     localStorage.removeItem('token');
@@ -50,29 +41,17 @@ export class AuthService {
 
   getUserName(): string {
     const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken = this.decodeToken(token);
-      console.log('Token decodificado para nombre:', decodedToken); // Asegúrate de que el token se decodifica correctamente
-      return decodedToken?.name || ''; // Devuelve el nombre del usuario (corrección aquí)
-    }
-    return '';
+    return token ? this.decodeToken(token)?.nombre || '' : '';
   }
-  
+
   getUserRoleFromToken(): string {
     const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken = this.decodeToken(token);
-      console.log("Token decodificado en getUserRoleFromToken:", decodedToken);
-      return decodedToken?.rol || ''; // Asegúrate de que `rol` sea el campo correcto
-    }
-    return '';
+    return token ? this.decodeToken(token)?.rol || '' : '';
   }
-  
+
   private decodeToken(token: string): any {
     try {
-      const decoded = jwt_decode(token); // Decodifica el token
-      console.log('Token decodificado:', decoded); // Verifica el contenido del token decodificado
-      return decoded;
+      return jwt_decode(token);
     } catch (e) {
       console.error('Error al decodificar el token', e);
       return null;

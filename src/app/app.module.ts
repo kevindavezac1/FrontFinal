@@ -10,6 +10,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';  // Asegúrate de importar FormsModule
 import { RouterModule } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { ListarUsuariosComponent } from './components/administrador/listar-usuarios/listar-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { BienvenidaComponent } from './components/bienvenida/bienvenida.componen
     LoginComponent,
     RegisterComponent,
     BienvenidaComponent,
+    ListarUsuariosComponent,
 
   ],
   imports: [
