@@ -31,4 +31,8 @@ export class RegisterComponent {
       }
     });
   }
+
+  hasRole(): boolean {
+    return !!this.user.rol && this.user.rol !== 'Paciente';
+  }
 }

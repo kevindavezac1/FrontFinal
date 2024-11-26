@@ -32,9 +32,9 @@
     <div>
       <label for="rol">Rol</label>
       <select id="rol" [(ngModel)]="user.rol" name="rol" required>
-        <option value="Administrador">Administrador</option>
-        <option value="Operador">Operador</option>
-        <option value="Médico">Médico</option>
+        <option *ngIf="hasRole()" value="Administrador">Administrador</option>
+        <option *ngIf="hasRole()" value="Operador">Operador</option>
+        <option *ngIf="hasRole()" value="Médico">Médico</option>
         <option value="Paciente">Paciente</option>
       </select>
     </div>

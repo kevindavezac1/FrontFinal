@@ -1,11 +1,63 @@
-/* header.component.css */
+/* Header Styles */
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f1f1f1;
-  }
-  button {
-    margin: 5px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #007bff;
+  color: white;
+  border-bottom: 3px solid #0056b3;
+}
+
+/* Logo */
+header .logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header .logo h1 a {
+  text-decoration: none;
+  color: white;
+}
+
+header .logo h1 a:hover {
+  text-decoration: underline;
+}
+
+/* Navigation */
+header .nav {
+  display: flex;
+  align-items: center;
+}
+
+header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+header nav span {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+header nav button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  background-color: #0056b3;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header nav button:hover {
+  background-color: #003f7f;
+}
+
+header nav button:active {
+  background-color: #002952;
+}
