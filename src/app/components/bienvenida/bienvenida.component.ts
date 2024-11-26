@@ -9,16 +9,26 @@ import { AuthService } from '../../services/auth.service';
 export class BienvenidaComponent implements OnInit {
   isLoggedIn: boolean = false;
   userName: string = '';
+  userRole: string = '';
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Verificar si el usuario está logueado
-    this.authService.isLoggedIn$.subscribe(loggedIn => {
-      this.isLoggedIn = loggedIn;
-      if (loggedIn) {
-        this.userName = this.authService.getUserName();
+    this.authService.isLoggedIn$.subscribe(
+      loggedIn => {
+        this.isLoggedIn = loggedIn;
+        if (loggedIn) {
+          try {
+            this.userName = this.authService.getUserName();
+            this.userRole = this.authService.getUserRoleFromToken();
+          } catch (error) {
+            console.error('Error al obtener datos del token:', error);
+          }
+        }
+      },
+      error => {
+        console.error('Error al verificar sesión:', error);
       }
-    });
+    );
   }
 }

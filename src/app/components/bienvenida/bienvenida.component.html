@@ -1,27 +1,39 @@
-<!-- Pantalla de bienvenida para el usuario no logueado -->
+<!-- Pantalla para usuarios no logueados -->
 <div *ngIf="!isLoggedIn; else loggedInContent">
-    <header>
-      <h1>Bienvenido a la Clínica Virtual</h1>
-    </header>
-  
-    <div class="main-content">
-      <p>Inicia sesión para acceder a las funcionalidades principales.</p>
-      <p>Como paciente registrado puedes solicitar turnos, ver tus turnos agendados y modificar tus datos personales.</p>
-      <button routerLink="/login">Iniciar sesión</button>
-      <button routerLink="/register">Registrarse</button>
-    </div>
+  <header>
+    <h1>Bienvenido a la Clínica Virtual</h1>
+  </header>
+
+  <div class="main-content">
+    <p>Inicia sesión para acceder a las funcionalidades principales.</p>
+    <p>
+      Como paciente registrado puedes solicitar turnos, ver tus turnos agendados
+      y modificar tus datos personales.
+    </p>
+    <button routerLink="/login">Iniciar sesión</button>
+    <button routerLink="/register">Registrarse</button>
   </div>
-  
-  <!-- Pantalla de bienvenida para el usuario logueado -->
-  <ng-template #loggedInContent>
-    <header>
-      <h1>Bienvenido de nuevo, {{ userName }}!</h1>
-    </header>
-  
-    <div class="main-content">
-      <p>Haz click en alguna de las funciones principales para acceder:</p>
-      <button routerLink="/profile">Ver perfil</button>
+</div>
+
+<!-- Pantalla para usuarios logueados -->
+<ng-template #loggedInContent>
+  <header>
+    <h1>Bienvenido de nuevo, {{ userName }}!</h1>
+  </header>
+
+  <div class="main-content">
+    <p>Haz click en alguna de las funciones principales para acceder:</p>
+
+    <!-- Contenido para pacientes -->
+    <div *ngIf="userRole === 'paciente'; else medicoContent">
       <button routerLink="/appointments">Mis turnos</button>
+      <button routerLink="/profile">Ver perfil</button>
     </div>
-  </ng-template>
-  
+
+    <!-- Contenido para médicos -->
+    <ng-template #medicoContent>
+      <button routerLink="/agenda">Mi agenda</button>
+      <button routerLink="/patients">Pacientes</button>
+    </ng-template>
+  </div>
+</ng-template>

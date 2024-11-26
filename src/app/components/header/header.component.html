@@ -1,6 +1,5 @@
 <header>
   <div class="logo">
-    <!-- Si el usuario NO está logueado, el texto será un enlace que redirige a Bienvenida -->
     <h1><a *ngIf="!isLoggedIn" routerLink="/">Clinica Virtual</a><span *ngIf="isLoggedIn">Clinica Virtual</span></h1>
   </div>
   <div class="nav">

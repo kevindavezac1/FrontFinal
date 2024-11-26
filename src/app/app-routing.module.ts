@@ -3,14 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: BienvenidaComponent }, // Página de bienvenida
+  { path: '', component: BienvenidaComponent }, // Página pública
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // La nueva ruta para la pantalla principal
+  { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
