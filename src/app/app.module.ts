@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'; // Necesario para hacer peticiones HTTP
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Necesario para hacer peticiones HTTP
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -11,6 +11,11 @@ import { FormsModule } from '@angular/forms';  // Asegúrate de importar FormsMo
 import { RouterModule } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
 import { ListarUsuariosComponent } from './components/administrador/listar-usuarios/listar-usuarios.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +33,12 @@ import { ListarUsuariosComponent } from './components/administrador/listar-usuar
     AppRoutingModule,
     HttpClientModule, // Necesario para hacer peticiones HTTP
     FormsModule,
-    RouterModule  // Añadir FormsModule aquí
+    RouterModule,
+    BrowserAnimationsModule,// Añadir FormsModule aquí
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

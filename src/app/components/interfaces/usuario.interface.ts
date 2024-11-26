@@ -1,10 +1,5 @@
 // usuario.interface.ts
-export interface Usuario {
-    id: number;
-    nombre: string;
-    apellido: string;
-    email: string;
-    telefono: string;
-    rol: string;
-  }
-  
+// export interface Usuario {
+//   nombre: string;
+//   rol: string;
+// }
