@@ -1,8 +1,43 @@
-table {
-  width: 100%;
-  margin: 20px 0;
+.filter-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
 }
-th, td {
-  padding: 8px 16px;
-  text-align: left;
+
+.filter-field {
+  flex-grow: 1;
+}
+
+table {
+  margin-bottom: 20px; /* Añade espacio debajo de la tabla */
+}
+
+button[routerLink] {
+  display: inline-block;
+  background-color: #007bff; /* Azul básico */
+  color: white; /* Texto en blanco */
+  padding: 10px 16px; /* Espaciado interno */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes ligeramente redondeados */
+  font-size: 14px; /* Tamaño de fuente */
+  text-align: center; /* Centra el texto */
+  cursor: pointer; /* Cambia el cursor al pasar */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Transición suave */
+}
+
+button[routerLink]:hover {
+  background-color: #0056b3; /* Azul más oscuro al pasar */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa al pasar */
+}
+
+button[routerLink]:active {
+  background-color: #003d80; /* Azul aún más oscuro al hacer clic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra reducida */
+}
+
+.container-button {
+  text-align: center; /* Centra el botón horizontalmente */
+  margin-top: 20px; /* Añade espacio superior */
 }

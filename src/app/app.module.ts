@@ -15,6 +15,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -37,8 +40,10 @@ import { MatSortModule } from '@angular/material/sort';
     BrowserAnimationsModule,// Añadir FormsModule aquí
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
-    
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

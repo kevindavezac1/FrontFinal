@@ -9,7 +9,7 @@ import { UserService } from '../../../services/user.service';
 export class ListarUsuariosComponent implements OnInit {
 
   usuarios = [];  // Array donde se almacenarán los usuarios
-  displayedColumns: string[] = ['id', 'nombre', 'email', 'nombre_cobertura'];  // Definir las columnas a mostrar
+  displayedColumns: string[] = ['id', 'nombre','apellido', 'rol','telefono', 'email'];  // Definir las columnas a mostrar
 
   constructor(private userService: UserService) {}
 
