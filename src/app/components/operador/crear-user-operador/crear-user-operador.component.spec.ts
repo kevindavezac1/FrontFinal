@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrearUserAdminComponent } from './crear-user-admin.component';
+import { CrearUserOperadorComponent } from './crear-user-operador.component';
 
 describe('CrearUserAdminComponent', () => {
-  let component: CrearUserAdminComponent;
-  let fixture: ComponentFixture<CrearUserAdminComponent>;
+  let component: CrearUserOperadorComponent;
+  let fixture: ComponentFixture<CrearUserOperadorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrearUserAdminComponent ]
+      declarations: [ CrearUserOperadorComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CrearUserAdminComponent);
+    fixture = TestBed.createComponent(CrearUserOperadorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

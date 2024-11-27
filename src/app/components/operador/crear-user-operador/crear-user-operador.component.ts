@@ -4,10 +4,10 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-usuario',
-  templateUrl: './crear-user-admin.component.html',
-  styleUrls: ['./crear-user-admin.component.css']
+  templateUrl: './crear-user-operador.component.html',
+  styleUrls: ['./crear-user-operador.component.css']
 })
-export class CrearUserAdminComponent implements OnInit {
+export class CrearUserOperadorComponent implements OnInit {
   user: any = {}; // Datos del formulario
   coberturas: any[] = []; // Lista de coberturas disponibles
 

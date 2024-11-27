@@ -1,5 +1,5 @@
 <div class="crear-usuario-container">
-    <h2>Crear Usuario (paciente)</h2>
+    <h2>Crear Usuario</h2>
     <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
       <div>
         <label for="dni">DNI:</label>
@@ -35,7 +35,9 @@
     <div>
         <label for="rol">Rol:</label>
         <select id="rol" [(ngModel)]="user.rol" name="rol" required #rol="ngModel">
-          <option value="Paciente" selected>Paciente</option>
+          <option value="Paciente" selected>Operador</option>
+          <option value="Medico" selected>Medico</option>
+          <option value="Administrador" selected>Administrador</option>
         </select>
         <div *ngIf="rol.invalid && rol.touched" class="error-message">Rol es requerido</div>
       </div>

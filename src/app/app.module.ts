@@ -18,7 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CrearUserAdminComponent } from './components/administrador/crear-user-admin/crear-user-admin.component';
+import { CrearUserOperadorComponent } from './components/operador/crear-user-operador/crear-user-operador.component';
 
 
 @NgModule({
@@ -30,7 +30,7 @@ import { CrearUserAdminComponent } from './components/administrador/crear-user-a
     RegisterComponent,
     BienvenidaComponent,
     ListarUsuariosComponent,
-    CrearUserAdminComponent,
+    CrearUserOperadorComponent,
 
   ],
   imports: [
