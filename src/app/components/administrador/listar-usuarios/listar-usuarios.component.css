@@ -69,3 +69,31 @@ button[routerLink]:active {
 .filter-container button:hover {
   background-color: #155fa0;
 }
+
+.back-button-container {
+  text-align: center; /* Centra el botón horizontalmente */
+  margin-top: 20px; /* Espaciado superior para separarlo de la tabla */
+}
+
+.back-button-container button {
+  display: inline-block;
+  padding: 10px 20px; /* Tamaño del botón */
+  font-size: 16px; /* Fuente más visible */
+  color: #fff; /* Texto blanco */
+  background-color: #28a745; /* Verde claro */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.back-button-container button:hover {
+  background-color: #218838; /* Verde más oscuro al pasar */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa al pasar */
+}
+
+.back-button-container button:active {
+  background-color: #1e7e34; /* Verde aún más oscuro al hacer clic */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra reducida */
+}

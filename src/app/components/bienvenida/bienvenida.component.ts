@@ -31,4 +31,9 @@ export class BienvenidaComponent implements OnInit {
       }
     );
   }
+
+  logout(): void {
+    this.authService.logout();  // Llama al método logout del servicio
+  }
+  
 }

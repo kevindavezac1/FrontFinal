@@ -1,0 +1,76 @@
+/* General container styling */
+.crear-usuario-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f8f9fa; /* Fondo claro */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.crear-usuario-container h2 {
+    text-align: center;
+    color: #007bff; /* Azul profesional */
+    margin-bottom: 20px;
+}
+
+/* Form fields */
+.crear-usuario-container form div {
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.crear-usuario-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333; /* Texto oscuro */
+    font-weight: bold;
+}
+
+/* Inputs and select fields */
+.crear-usuario-container input,
+.crear-usuario-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* Placeholder color */
+.crear-usuario-container input::placeholder {
+    color: #aaa;
+}
+
+/* Button styling */
+.crear-usuario-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.crear-usuario-container button:hover {
+    background-color: #0056b3;
+}
+
+.crear-usuario-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Error messages */
+.error-message {
+    color: #dc3545; /* Rojo de error */
+    font-size: 12px;
+    margin-top: 5px;
+}

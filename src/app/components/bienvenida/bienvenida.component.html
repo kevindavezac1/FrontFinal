@@ -14,17 +14,21 @@
     <button routerLink="/register">Registrarse</button>
   </div>
 </div>
+
 <!-- Pantalla para usuarios logueados -->
 <ng-template #loggedInContent>
   <header>
     <h1>Bienvenido de nuevo, {{ userName }}!</h1>
+    <div class="user-info">
+      <span>{{ userRole }}</span>
+      <button (click)="logout()">Cerrar sesión</button>
+    </div>
   </header>
 
   <div class="main-content">
     <p>Haz click en alguna de las funciones principales para acceder:</p>
 
     <!-- Funcionalidades para pacientes -->
-     <!--listo-->
     <div *ngIf="userRole === 'Paciente'; else medicoContent">
       <button routerLink="/appointments">Nuevo turno</button>
       <button routerLink="/profile">Mis turnos</button>
@@ -32,32 +36,29 @@
     </div>
 
     <!-- Funcionalidades para médicos -->
-      <!--listo-->
     <ng-template #medicoContent>
-     
       <div *ngIf="userRole === 'Medico'">
         <button routerLink="/agenda">Turnos programados</button>
-        <button routerLink="/patients">Gestion de agenda</button>
+        <button routerLink="/patients">Gestión de agenda</button>
       </div>
 
       <!-- Funcionalidades para operadores -->
-       <!--listo-->
       <div *ngIf="userRole === 'Operador'">
         <button routerLink="/schedule">Crear paciente</button>
         <button routerLink="/patients-list">Asignar turno</button>
-        <button routerLink="/patients-list">Ver agenda medico</button>
-        <button routerLink="/patients-list">Ver pacientes del dia</button>
+        <button routerLink="/patients-list">Ver agenda médico</button>
+        <button routerLink="/patients-list">Ver pacientes del día</button>
       </div>
 
       <!-- Funcionalidades para administradores -->
-       <!--listo-->
       <div *ngIf="userRole === 'Administrador'">
-          
         <button routerLink="/listar-usuarios">Ver usuarios</button>
-        <button routerLink="/admin-dashboard">Crear usuario</button>
+        <button routerLink="/crear-usuario">Crear usuario</button>
         <button routerLink="/admin-dashboard">Editar usuario</button>
-
+        <button routerLink="/admin-dashboard">Gestión de coberturas</button>
+        <button routerLink="/admin-dashboard">Gestión de especialidades</button>
       </div>
+    
     </ng-template>
   </div>
 </ng-template>
