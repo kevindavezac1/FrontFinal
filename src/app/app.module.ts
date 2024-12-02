@@ -7,7 +7,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { FormsModule } from '@angular/forms';  // Asegúrate de importar FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Asegúrate de importar FormsModule
 import { RouterModule } from '@angular/router';
 import { BienvenidaComponent } from './components/bienvenida/bienvenida.component';
 import { ListarUsuariosComponent } from './components/administrador/listar-usuarios/listar-usuarios.component';
@@ -18,7 +18,11 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import { CrearUserOperadorComponent } from './components/operador/crear-user-operador/crear-user-operador.component';
+import { CrearUserAdminComponent } from './components/administrador/crear-user-admin/crear-user-admin.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { DialogoEditarUsuarioComponent } from './components/administrador/dialog-editar-usuario/dialog-editar-usuario.component';
 
 
 @NgModule({
@@ -30,7 +34,8 @@ import { CrearUserOperadorComponent } from './components/operador/crear-user-ope
     RegisterComponent,
     BienvenidaComponent,
     ListarUsuariosComponent,
-    CrearUserOperadorComponent,
+    CrearUserAdminComponent,
+    DialogoEditarUsuarioComponent
 
   ],
   imports: [
@@ -45,7 +50,12 @@ import { CrearUserOperadorComponent } from './components/operador/crear-user-ope
     MatSortModule,
     MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatButtonModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

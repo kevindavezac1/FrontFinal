@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrearUserOperadorComponent } from './crear-user-operador.component';
+import { CrearUserOperadorComponent } from './crear-user-admin.component';
 
 describe('CrearUserAdminComponent', () => {
   let component: CrearUserOperadorComponent;

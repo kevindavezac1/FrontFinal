@@ -4,10 +4,10 @@ import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-usuario',
-  templateUrl: './crear-user-operador.component.html',
-  styleUrls: ['./crear-user-operador.component.css']
+  templateUrl: './crear-user-admin.component.html',
+  styleUrls: ['./crear-user-admin.component.css']
 })
-export class CrearUserOperadorComponent implements OnInit {
+export class CrearUserAdminComponent implements OnInit {
   user: any = {}; // Datos del formulario
   coberturas: any[] = []; // Lista de coberturas disponibles
 
@@ -28,7 +28,7 @@ export class CrearUserOperadorComponent implements OnInit {
   onSubmit(userForm: NgForm) {
     if (userForm.valid) {
       console.log('Datos enviados:', this.user); // Depuración
-      this.http.post('http://localhost:4000/api/admin/pacientes', this.user)
+      this.http.post('http://localhost:4000/api/crearUsuario', this.user)
         .subscribe(
           (response) => {
             console.log('Paciente creado con éxito:', response);
