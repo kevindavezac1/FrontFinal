@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogoEditarUsuarioComponent } from './components/administrador/dialog-editar-usuario/dialog-editar-usuario.component';
+import { GestionCoberturasComponent } from './components/administrador/gestion-coberturas/gestion-coberturas.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { DialogoEditarUsuarioComponent } from './components/administrador/dialog
     BienvenidaComponent,
     ListarUsuariosComponent,
     CrearUserAdminComponent,
-    DialogoEditarUsuarioComponent
+    DialogoEditarUsuarioComponent,
+    GestionCoberturasComponent
 
   ],
   imports: [

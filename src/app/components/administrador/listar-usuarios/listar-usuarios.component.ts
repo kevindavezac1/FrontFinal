@@ -13,7 +13,7 @@ import { lastValueFrom } from 'rxjs';
 export class ListarUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
   usuariosFiltrados: Usuario[] = [];
-  displayedColumns: string[] = ['id', 'nombre', 'apellido', 'rol', 'telefono', 'email', 'acciones'];
+  displayedColumns: string[] = ['id', 'nombre', 'apellido','dni', 'rol','nombre_cobertura', 'telefono', 'email', 'acciones'];
   usuarioSeleccionado: Usuario | null = null;
 
   filtroNombre: string = '';
@@ -29,6 +29,7 @@ export class ListarUsuariosComponent implements OnInit {
   async cargarUsuarios(): Promise<void> {
     try {
       const response = await lastValueFrom(this.userService.obtenerUsuarios());
+
       if (response.codigo === 200) {
         console.log('Usuarios cargados:', response.payload);
         this.usuarios = response.payload as Usuario[];

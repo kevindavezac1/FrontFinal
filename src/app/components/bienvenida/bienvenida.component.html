@@ -18,11 +18,7 @@
 <!-- Pantalla para usuarios logueados -->
 <ng-template #loggedInContent>
   <header>
-    <h1>Bienvenido de nuevo, {{ userName }}!</h1>
-    <div class="user-info">
-      <span>{{ userRole }}</span>
-      <button (click)="logout()">Cerrar sesión</button>
-    </div>
+    <h1>Bienvenido de nuevo capo, {{ userName }}!</h1>
   </header>
 
   <div class="main-content">
@@ -54,8 +50,7 @@
       <div *ngIf="userRole === 'Administrador'">
         <button routerLink="/listar-usuarios">Ver usuarios</button>
         <button routerLink="/crear-usuario">Crear usuario</button>
-        <button routerLink="/admin-dashboard">Editar usuario</button>
-        <button routerLink="/admin-dashboard">Gestión de coberturas</button>
+        <button routerLink="/gestion-coberturas">Gestión de coberturas</button>
         <button routerLink="/admin-dashboard">Gestión de especialidades</button>
       </div>
     

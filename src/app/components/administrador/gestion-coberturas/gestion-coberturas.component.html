@@ -1,0 +1,35 @@
+<div class="gestion-cobertura">
+    <h2>Gestión de Coberturas</h2>
+  
+    <div class="nueva-cobertura">
+      <input [(ngModel)]="nuevaCobertura.nombre" placeholder="Nombre de la nueva cobertura">
+      <button (click)="agregarCobertura()">Agregar Cobertura</button>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cobertura of coberturas">
+          <td>{{ cobertura.id }}</td>
+          <td>{{ cobertura.nombre }}</td>
+          <td>
+            <button (click)="seleccionarCobertura(cobertura)">Editar</button>
+            <button (click)="eliminarCobertura(cobertura.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="coberturaSeleccionada" class="editar-cobertura">
+      <h3>Editar Cobertura</h3>
+      <input [(ngModel)]="coberturaSeleccionada.nombre" placeholder="Nombre de la cobertura">
+      <button (click)="actualizarCobertura()">Guardar Cambios</button>
+      <button (click)="coberturaSeleccionada = null">Cancelar</button>
+    </div>
+  </div>

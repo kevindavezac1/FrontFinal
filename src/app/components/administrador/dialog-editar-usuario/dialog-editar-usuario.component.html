@@ -11,6 +11,11 @@
   </mat-form-field>
 
   <mat-form-field>
+    <mat-label>Dni</mat-label>
+    <input matInput [(ngModel)]="usuario.dni" name="dni" required>
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Rol</mat-label>
     <mat-select [(ngModel)]="usuario.rol" name="rol">
       <mat-option value="Operador">Operador</mat-option>
