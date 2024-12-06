@@ -14,6 +14,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  // Método de login
   login(username: string, password: string): void {
     const loginData = { usuario: username, password };
 
@@ -22,7 +23,6 @@ export class AuthService {
       next: (response) => {
         if (response.jwt) {
           localStorage.setItem('token', response.jwt); // Guarda el token
-          
           this.isLoggedInSubject.next(true); // Actualiza el estado de autenticación
           this.router.navigate(['/']); // Redirige al home o página principal
         } else {
@@ -36,12 +36,14 @@ export class AuthService {
     });
   }
 
+  // Método de logout
   logout(): void {
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
     this.router.navigate(['/login']);
   }
 
+  // Obtener el nombre del usuario desde el token
   getUserName(): string {
     const token = localStorage.getItem('token');
     const decoded = token ? this.decodeToken(token) : null;
@@ -49,13 +51,13 @@ export class AuthService {
     return decoded?.name || '';
   }
 
-
+  // Obtener el rol del usuario desde el token
   getUserRoleFromToken(): string {
     const token = localStorage.getItem('token');
     return token ? this.decodeToken(token)?.rol || '' : '';
   }
 
-
+  // Decodificar el token JWT
   private decodeToken(token: string): any {
     try {
       return jwt_decode(token);
@@ -65,19 +67,31 @@ export class AuthService {
     }
   }
 
- getToken(): string {
-    return localStorage.getItem('token') || '';  // Obtiene el token del localStorage
-  }
+  // Obtener el token desde el localStorage
+  getToken(): string {
+    const token = localStorage.getItem('token') || ''; 
+    try {
+      const decoded = jwt_decode(token); 
+      console.log('Token decodificado desde getToken:', decoded);
+    } catch (error) {
+      console.error('Error al decodificar el token:', error);
+    }
+    return token;
+  } 
 
+  // Verificar si existe un token
   private hasToken(): boolean {
     return !!this.getToken();
   }
 
+  // Manejar token inválido o expirado
   handleTokenInvalid(response: any) {
     if (response.codigo === -1) {
       console.warn('Token inválido o expirado:', response.mensaje);
       alert('Debe iniciar sesión nuevamente.');
-      // this.logout();
+      // this.logout(); // Descomentar si quieres hacer logout automáticamente
     }
   }
+
+  
 }

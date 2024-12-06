@@ -26,7 +26,7 @@ export class ListarUsuariosComponent implements OnInit {
     this.cargarUsuarios();
   }
 
-  async cargarUsuarios(): Promise<void> {
+  async cargarUsuarios(): Promise<void> { 
     try {
       const response = await lastValueFrom(this.userService.obtenerUsuarios());
 

@@ -1,0 +1,10 @@
+<div>
+  <h2>Selecciona una Especialidad</h2>
+  <ul>
+    <li *ngFor="let especialidad of especialidades">
+      {{ especialidad.descripcion }}
+    </li>
+  </ul>
+  <p *ngIf="especialidades.length === 0">No hay especialidades disponibles.</p>
+</div>
+<!-- se que faltan datos y es un form con los select lo hice asi para intentar ver si los traia -->

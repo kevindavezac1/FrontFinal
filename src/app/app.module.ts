@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogoEditarUsuarioComponent } from './components/administrador/dialog-editar-usuario/dialog-editar-usuario.component';
 import { GestionCoberturasComponent } from './components/administrador/gestion-coberturas/gestion-coberturas.component';
+import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-turno.component';
 
 
 @NgModule({
@@ -37,16 +38,18 @@ import { GestionCoberturasComponent } from './components/administrador/gestion-c
     ListarUsuariosComponent,
     CrearUserAdminComponent,
     DialogoEditarUsuarioComponent,
-    GestionCoberturasComponent
+    GestionCoberturasComponent,
+    NuevoTurnoComponent,
+
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, // Necesario para hacer peticiones HTTP
+    HttpClientModule, 
     FormsModule,
     RouterModule,
-    BrowserAnimationsModule,// Añadir FormsModule aquí
+    BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,

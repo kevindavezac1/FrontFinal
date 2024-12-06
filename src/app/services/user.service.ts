@@ -18,16 +18,17 @@ export class UserService {
   }
 
   obtenerUsuarios(): Observable<any> {
-    const token = this.authService.getToken(); // Obtiene el token desde AuthService
-    const headers = new HttpHeaders().set('Authorization', token); // Solo envía el token, sin 'Bearer'
+    const token = this.authService.getToken(); 
+    const headers = new HttpHeaders().set('Authorization', token); 
     return this.http.get(this.getUsersUrl, { headers });
   }
 
   actualizarUsuario(id: number, usuario: Usuario): Observable<any> {
-    const token = this.authService.getToken(); // Obtiene el token desde AuthService
-    const headers = new HttpHeaders().set('Authorization', token); // Solo envía el token, sin 'Bearer'
+    const token = this.authService.getToken(); 
+    const headers = new HttpHeaders().set('Authorization', token); 
     
-    // Enviar la solicitud PUT con los datos actualizados
     return this.http.put(`${this.urlActualizar}/actualizarUsuario/${id}`, usuario, { headers });
   }
+
+  
 }
