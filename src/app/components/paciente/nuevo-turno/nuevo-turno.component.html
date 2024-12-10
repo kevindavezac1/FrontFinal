@@ -1,10 +1,30 @@
-<div>
-  <h2>Selecciona una Especialidad</h2>
-  <ul>
-    <li *ngFor="let especialidad of especialidades">
+<form [formGroup]="formulario" (ngSubmit)="crearTurno()">
+  <label for="cobertura">Cobertura:</label>
+  <input id="cobertura" formControlName="cobertura" readonly />
+
+  <label for="especialidad">Especialidad</label>
+  <select id="especialidad" formControlName="especialidad" required>
+    <option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
       {{ especialidad.descripcion }}
-    </li>
-  </ul>
-  <p *ngIf="especialidades.length === 0">No hay especialidades disponibles.</p>
-</div>
-<!-- se que faltan datos y es un form con los select lo hice asi para intentar ver si los traia -->
+    </option>
+  </select>
+
+  <label for="medico">Médico:</label>
+  <select id="medico" formControlName="medico">
+    <option *ngFor="let medico of medicos" [value]="medico.id">
+      {{ medico.nombre }} {{ medico.apellido }}
+    </option>
+  </select>
+
+  <label for="fecha">Fecha:</label>
+  <input id="fecha" type="date" formControlName="fecha" [min]="minDate" />
+
+  <label for="hora">Hora:</label>
+  <input id="hora" type="time" formControlName="hora" min="09:00" max="18:00" />
+
+  <label for="notas">Notas:</label>
+  <textarea id="notas" formControlName="notas"></textarea>
+
+  <button type="submit" [disabled]="!formularioValido()">Crear Turno</button>
+  <button type="button" (click)="cancelar()">Cancelar</button>
+</form>

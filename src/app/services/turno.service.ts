@@ -1,27 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';  // Importar el servicio de autenticación
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TurnoService {
-  private apiUrl = 'http://localhost:4000/api'; // Asegúrate que esta URL sea correcta
+  private apiUrl = 'http://localhost:4000/api';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-
-  // Método para obtener especialidades
-  obtenerEspecialidades(): Observable<any> {
-    const token = this.authService.getToken(); 
-    const headers = new HttpHeaders().set('Authorization', token); 
-    return this.http.get(`${this.apiUrl}/obtenerEspecialidades`, { headers });
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders().set('Authorization', token);
   }
-  
+
+  crearTurno(turno: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/asignarTurnoPaciente`, turno, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  obtenerEspecialidades(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/obtenerEspecialidades`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  obtenerMedicosPorEspecialidad(id_especialidad: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/obtenerMedicoPorEspecialidad/${id_especialidad}`, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  obtenerCoberturaDelUsuario(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/coberturas/${id}`, {
+      headers: this.getHeaders(),
+    });
+  }
 }
-
-
-
-
-

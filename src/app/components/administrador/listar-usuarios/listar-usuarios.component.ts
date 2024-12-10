@@ -31,7 +31,6 @@ export class ListarUsuariosComponent implements OnInit {
       const response = await lastValueFrom(this.userService.obtenerUsuarios());
 
       if (response.codigo === 200) {
-        console.log('Usuarios cargados:', response.payload);
         this.usuarios = response.payload as Usuario[];
         this.usuariosFiltrados = this.usuarios;
       } else {

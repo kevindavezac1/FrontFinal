@@ -15,25 +15,27 @@ export class BienvenidaComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe(
-      loggedIn => {
+      (loggedIn) => {
         this.isLoggedIn = loggedIn;
         if (loggedIn) {
           try {
-            this.userName = this.authService.getUserName();
-            this.userRole = this.authService.getUserRoleFromToken();
+            const name = this.authService.getUserName(); // Extrae el nombre
+            const role = this.authService.getUserRole(); // Extrae el rol
+            this.userName = name;
+            this.userRole = role;
           } catch (error) {
-            console.error('Error al obtener datos del token:', error);
+            console.error('Error al obtener datos del payload:', error);
           }
         }
       },
-      error => {
+      (error) => {
         console.error('Error al verificar sesión:', error);
       }
     );
   }
+  
 
   logout(): void {
-    this.authService.logout();  // Llama al método logout del servicio
+    this.authService.logout(); // Llama al método logout del servicio
   }
-  
 }

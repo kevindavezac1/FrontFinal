@@ -78,3 +78,15 @@
 button{
     margin-top: 5px;
 }
+
+/* Asegura que el texto sea visible en el <select> */
+.crear-usuario-container select {
+    color: #333; /* Texto oscuro */
+    background-color: #fff; /* Fondo claro */
+}
+
+/* Asegura que las opciones también sean visibles */
+.crear-usuario-container select option {
+    color: #333; /* Texto oscuro */
+    background-color: #fff; /* Fondo claro */
+}

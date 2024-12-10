@@ -13,24 +13,24 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
-  
   ngOnInit(): void {
-    this.authService.isLoggedIn$.subscribe(loggedIn => {
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
       if (loggedIn) {
-        this.userName = this.authService.getUserName();  // Obtén el nombre
-        this.userRole = this.authService.getUserRoleFromToken();  // Obtén el rol
-        console.log("User Role en Header:", this.userRole);  // Verifica que el rol esté siendo recibido
+        try {
+          this.userName = this.authService.getUserName(); 
+          this.userRole = this.authService.getUserRole(); 
+        } catch (error) {
+          console.error('Error al obtener datos del payload en Header:', error);
+        }
       } else {
         this.userName = '';
         this.userRole = '';
       }
     });
   }
-  
-  
 
-  onLogout() {
+  onLogout(): void {
     this.authService.logout();
   }
 }
