@@ -1,0 +1,63 @@
+<div class="gestion-agenda">
+  <h1>Gestión de Agenda</h1>
+
+  <!-- Date Picker -->
+  <div class="date-picker">
+    <label for="fechaSeleccionada">Selecciona una fecha:</label>
+    <input 
+      type="date" 
+      id="fechaSeleccionada" 
+      [(ngModel)]="fechaSeleccionada" 
+      (change)="cargarHorarios()"
+      [value]="fechaSeleccionada">
+  </div>
+
+  <!-- Tabla de horarios existentes -->
+  <div *ngIf="horariosExistentes.length > 0" class="horarios-existentes">
+    <h2>Horarios para el día {{ fechaSeleccionada }}:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Hora de Entrada</th>
+          <th>Hora de Salida</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let horario of horariosExistentes">
+          <td>{{ horario.hora_entrada }}</td>
+          <td>{{ horario.hora_salida }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Formulario para agregar nuevos horarios -->
+  <div class="formulario-nuevos-horarios">
+    <h2>Agregar nuevos horarios</h2>
+    
+    <!-- Mostrar los horarios nuevos agregados -->
+    <div *ngFor="let horario of horariosNuevos; let i = index">
+      <div>
+        <label for="horaEntrada{{ i }}">Hora Entrada:</label>
+        <input 
+          type="time" 
+          id="horaEntrada{{ i }}" 
+          [(ngModel)]="horario.hora_entrada">
+      </div>
+      <div>
+        <label for="horaSalida{{ i }}">Hora Salida:</label>
+        <input 
+          type="time" 
+          id="horaSalida{{ i }}" 
+          [(ngModel)]="horario.hora_salida">
+      </div>
+      <button (click)="eliminarHorario(i)">Eliminar</button>
+    </div>
+
+    <!-- Botón único para agregar un nuevo horario -->
+    <button *ngIf="horariosNuevos.length === 0" (click)="agregarNuevoHorario()">Agregar Horario</button>
+
+    <!-- Botón para guardar la agenda -->
+    <button (click)="guardarAgenda()">Guardar Agenda</button>
+  </div>
+</div>

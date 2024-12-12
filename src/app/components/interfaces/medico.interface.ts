@@ -4,3 +4,4 @@ export interface Medico {
   apellido: string;
   id_especialidad: number;
 }
+

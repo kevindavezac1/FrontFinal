@@ -5,7 +5,7 @@ import { CoberturaService } from '../../../services/cobertura.service';
 import { Especialidad } from '../../interfaces/especialidad.interface';
 import { Medico } from '../../interfaces/medico.interface';
 import { AuthService } from '../../../services/auth.service';
-import { lastValueFrom } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-nuevo-turno',
@@ -19,6 +19,7 @@ export class NuevoTurnoComponent implements OnInit {
   formulario: FormGroup;
   especialidadSeleccionada: Especialidad | null = null;
   minDate: string;
+  horasValidas: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -29,7 +30,7 @@ export class NuevoTurnoComponent implements OnInit {
     this.formulario = this.fb.group({
       cobertura: [{ value: '', disabled: true }, Validators.required],
       especialidad: ['', Validators.required],
-      medico: ['', Validators.required],
+      id_agenda: ['', Validators.required], // Cambiado a id_agenda
       fecha: ['', [Validators.required, this.fechaValidator.bind(this)]],
       hora: ['', [Validators.required, this.horaValidator.bind(this)]],
       notas: ['', Validators.required],
@@ -37,6 +38,7 @@ export class NuevoTurnoComponent implements OnInit {
 
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];
+    this.generarHorasValidas();
   }
 
   ngOnInit(): void {
@@ -59,7 +61,7 @@ export class NuevoTurnoComponent implements OnInit {
 
   async cargarCobertura(id: number): Promise<void> {
     try {
-      const response = await lastValueFrom(this.coberturaService.getCoberturaDelUsuario(id));
+      const response = await firstValueFrom(this.coberturaService.getCoberturaDelUsuario(id));
       if (response && response.codigo === 200) {
         this.cobertura = response.payload;
         this.formulario.controls['cobertura'].setValue(this.cobertura.nombre);
@@ -73,7 +75,7 @@ export class NuevoTurnoComponent implements OnInit {
 
   async cargarEspecialidades(): Promise<void> {
     try {
-      const response = await lastValueFrom(this.turnoService.obtenerEspecialidades());
+      const response = await firstValueFrom(this.turnoService.obtenerEspecialidades());
       if (response.codigo === 200) {
         this.especialidades = response.payload;
       } else {
@@ -85,19 +87,16 @@ export class NuevoTurnoComponent implements OnInit {
   }
 
   cargarMedicos(especialidadId: number): void {
-    console.log('Especialidad seleccionada:', especialidadId); // Verifica el ID de la especialidad
     this.turnoService.obtenerMedicosPorEspecialidad(especialidadId).subscribe(
       (response: any) => {
         if (response.codigo === 200) {
           this.medicos = response.payload;
-          console.log('Médicos cargados:', this.medicos); // Verifica los médicos cargados
         } else {
           alert('No se pudieron cargar los médicos. Intenta nuevamente.');
         }
       },
       (error) => {
         alert('Ocurrió un error al intentar cargar los médicos.');
-        console.error('Error en la solicitud HTTP:', error); // Log para depuración
       }
     );
   }
@@ -119,40 +118,43 @@ export class NuevoTurnoComponent implements OnInit {
     return null;
   }
 
-  formularioValido(): boolean {
-    return this.formulario.valid;
+  generarHorasValidas(): void {
+    const horas = [];
+    for (let i = 9; i <= 18; i++) {
+      const hora = i < 10 ? `0${i}` : `${i}`;
+      horas.push(`${hora}:00`);
+      if (i < 18) {
+        horas.push(`${hora}:30`);
+      }
+    }
+    this.horasValidas = horas;
   }
 
-  crearTurno(): void {
-    if (this.formularioValido()) {
-        const turno = {
-            nota: this.formulario.value.notas,
-            id_medico: this.formulario.value.medico,
-            fecha: this.formulario.value.fecha,
-            hora: this.formulario.value.hora,
-            id_paciente: this.authService.getUserId(),
-            id_cobertura: this.cobertura.id
-        };
+  async crearTurno(): Promise<void> {
+    if (this.formulario.valid) {
+      const turno = {
+        nota: this.formulario.value.notas,
+        id_agenda: this.formulario.value.id_agenda, // Cambiado a id_agenda
+        fecha: this.formulario.value.fecha,
+        hora: this.formulario.value.hora,
+        id_paciente: this.authService.getUserId(),
+        id_cobertura: this.cobertura.id,
+      };
 
-        console.log('Datos del turno a enviar:', turno); // Log para depuración
-
-        this.turnoService.crearTurno(turno).subscribe(
-            (response: any) => {
-                if (response.codigo === 200) {
-                    console.log('Turno creado con éxito', response);
-                } else {
-                    alert('Error al crear el turno: ' + response.mensaje);
-                }
-            },
-            (error) => {
-                alert('Ocurrió un error al intentar crear el turno.');
-                console.error('Error en la solicitud HTTP:', error); // Log para depuración
-            }
-        );
+      try {
+        const response = await firstValueFrom(this.turnoService.crearTurno(turno));
+        if (response.codigo === 200) {
+          console.log('Turno creado con éxito:', response);
+        } else {
+          alert('Error al crear el turno: ' + response.mensaje);
+        }
+      } catch (error) {
+        alert('Ocurrió un error al intentar crear el turno.');
+      }
     } else {
-        alert('Por favor completa todos los campos requeridos.');
+      alert('Por favor completa todos los campos requeridos.');
     }
-}
+  }
 
   cancelar(): void {
     console.log('Formulario cancelado');

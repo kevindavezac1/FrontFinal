@@ -25,6 +25,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { DialogoEditarUsuarioComponent } from './components/administrador/dialog-editar-usuario/dialog-editar-usuario.component';
 import { GestionCoberturasComponent } from './components/administrador/gestion-coberturas/gestion-coberturas.component';
 import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-turno.component';
+import { GestionAgendaComponent } from './components/medico/gestion-agenda/gestion-agenda.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 
 @NgModule({
@@ -40,6 +43,7 @@ import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-tur
     DialogoEditarUsuarioComponent,
     GestionCoberturasComponent,
     NuevoTurnoComponent,
+    GestionAgendaComponent,
 
 
   ],
@@ -59,7 +63,9 @@ import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-tur
     ReactiveFormsModule,
     MatSelectModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDatepickerModule,
+
     
   ],
   providers: [],

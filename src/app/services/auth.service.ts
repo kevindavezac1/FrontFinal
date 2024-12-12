@@ -59,7 +59,7 @@ export class AuthService {
 
   // Obtener el token desde el localStorage
   getToken(): string {
-    const token = localStorage.getItem('token') || '';
+     const token = localStorage.getItem('token') || '';
     return token;
   }
 
@@ -80,8 +80,9 @@ export class AuthService {
   }
 
   // Obtener el ID del usuario desde el payload
-getUserId(): number | null {
-  const payload = localStorage.getItem('payload');
-  return payload ? JSON.parse(payload).id || null : null;  // Asegúrate de que "id" esté presente en el payload
-}
+  getUserId(): number | null {
+    const payload = localStorage.getItem('payload');
+    console.log("Payload obtenido:", payload);
+    return payload ? JSON.parse(payload).id || null : null;
+  }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from './../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -34,9 +34,20 @@ export class TurnoService {
     });
   }
 
+  obtenerEspecialidadesPorMedico(id_medico: number): Observable<any> {
+
+    return this.http.get(`${this.apiUrl}/obtenerEspecialidadesMedico/${id_medico}`, {headers: this.getHeaders()});
+  }
+
   obtenerCoberturaDelUsuario(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/coberturas/${id}`, {
       headers: this.getHeaders(),
     });
   }
+
+  obtenerAgenda(id_medico: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/obtenerAgenda/${id_medico}`, { 
+      headers: this.getHeaders() });
+  }
+
 }

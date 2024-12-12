@@ -8,6 +8,7 @@ import { ListarUsuariosComponent } from './components/administrador/listar-usuar
 import { CrearUserAdminComponent } from './components/administrador/crear-user-admin/crear-user-admin.component';
 import { GestionCoberturasComponent } from './components/administrador/gestion-coberturas/gestion-coberturas.component';
 import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-turno.component';
+import { GestionAgendaComponent } from './components/medico/gestion-agenda/gestion-agenda.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent }, // Página pública
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'crear-usuario', component: CrearUserAdminComponent },
   {path: 'gestion-coberturas', component:GestionCoberturasComponent},
   {path: 'nuevo-turno', component: NuevoTurnoComponent},
+  {path: 'gestion-agenda', component:GestionAgendaComponent},
   { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
 ];
 
