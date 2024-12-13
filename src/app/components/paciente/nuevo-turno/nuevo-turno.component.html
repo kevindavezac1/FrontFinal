@@ -1,4 +1,78 @@
-<form [formGroup]="formulario" (ngSubmit)="crearTurno()">
+<div class="formulario">
+  <form [formGroup]="form">
+    <div class="cobertura">
+      <div class="cobertura">
+        <mat-form-field>
+          <mat-label>Cobertura</mat-label>
+          <input matInput [value]="cobertura?.nombre" readonly>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="especialidad">
+      <mat-form-field>
+        <mat-label>Especialidad</mat-label>
+        <mat-select formControlName="especialidad" (selectionChange)="cambiarEspecialidad()">
+          <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
+            {{ especialidad.descripcion }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+
+    <div class="profesional">
+      <mat-form-field>
+        <mat-label>Profesional</mat-label>
+        <mat-select formControlName="profesional" (selectionChange)="cambiarProfesional()">
+          <mat-option *ngFor="let profesional of profesionales" [value]="profesional.id_medico">
+            {{ profesional.nombre}}
+            {{ profesional.apellido}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="fecha">
+      <mat-form-field>
+        <mat-label>Fecha</mat-label>
+        <input matInput type="date" formControlName="fecha" (change)="cambiarFechas()">
+      </mat-form-field>
+    </div>
+
+    <div class="hora">
+      <mat-form-field>
+        <mat-label>Hora</mat-label>
+        <mat-select formControlName="hora" [disabled]="!form.get('fecha')?.value || !form.get('profesional')?.value">
+          <mat-option *ngFor="let hora of horasDisponibles" [value]="hora">
+            {{ hora }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    
+
+    <div class="notas">
+      <mat-form-field>
+        <mat-label>Notas</mat-label>
+        <input matInput type="text" formControlName="notas">
+      </mat-form-field>
+    </div>
+
+    <div class="botones">
+      <button type="submit" (click)="enviar()">Aceptar</button>
+      <button type="button" (click)="botonCancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+<!-- <form [formGroup]="formulario" (ngSubmit)="crearTurno()">
   <label for="cobertura">Cobertura:</label>
   <input id="cobertura" formControlName="cobertura" readonly />
 
@@ -10,23 +84,26 @@
   </select>
 
   <label for="medico">Médico:</label>
-  <select id="medico" formControlName="id_agenda"> <!-- Cambiado a id_agenda -->
+  <select id="medico" formControlName="id_agenda"> 
     <option *ngFor="let medico of medicos" [value]="medico.id">
       {{ medico.nombre }} {{ medico.apellido }}
-    </option>
+    
   </select>
 
   <label for="fecha">Fecha:</label>
   <input id="fecha" type="date" formControlName="fecha" [min]="minDate" />
 
-  <label for="hora">Hora:</label>
-  <select id="hora" formControlName="hora">
-    <option *ngFor="let hora of horasValidas" [value]="hora">{{ hora }}</option>
-  </select>
+  <div>
+    <label for="hora">Hora:</label>
+    <select id="hora" formControlName="hora">
+      <option *ngFor="let hora of horasValidas" [value]="hora">{{ hora }}</option>
+    </select>
+  </div>
 
   <label for="notas">Notas:</label>
   <textarea id="notas" formControlName="notas"></textarea>
 
   <button type="submit" [disabled]="!formulario.valid">Crear Turno</button>
   <button type="button" (click)="cancelar()">Cancelar</button>
-</form>
+</form> -->
+

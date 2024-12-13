@@ -19,22 +19,28 @@ export class AuthService {
   
     this.http.post<{ jwt: string; payload: any }>(`${this.apiUrl}/login`, loginData).subscribe({
       next: (response) => {
-        if (response.jwt) {
+        // Verifica si se ha recibido un token y payload
+        console.log('Respuesta del backend:', response);
+  
+        if (response.jwt && response.payload) {
+          // Guarda el token y el payload
           localStorage.setItem('token', response.jwt); // Guarda el token
           localStorage.setItem('payload', JSON.stringify(response.payload)); // Guarda el payload
           this.isLoggedInSubject.next(true);
-         
+          
+          console.log('Token y Payload guardados en localStorage');
           this.router.navigate(['/']); // Redirige al home o página principal
         } else {
-          console.error('No se recibió un token en la respuesta');
+          console.error('No se recibió un token o payload en la respuesta');
         }
       },
       error: (error) => {
         console.error('Error al iniciar sesión', error);
-        alert('Usuario o contraseña incorrectos'); // Muestra el mensaje de error
+        alert('Usuario o contraseña incorrectos');
       },
     });
   }
+  
   
 
   // Método de logout
@@ -65,10 +71,11 @@ export class AuthService {
 
   // Verificar si existe un token
   private hasToken(): boolean {
-    const token = this.getToken();
+    const token = localStorage.getItem('token');
     console.log('Token encontrado:', token); // Agregar log para depuración
-    return !!token;
+    return !!token; // Retorna true si hay un token
   }
+  
 
   // Manejar token inválido o expirado (si el backend lo notifica)
   handleTokenInvalid(response: any) {
@@ -82,7 +89,8 @@ export class AuthService {
   // Obtener el ID del usuario desde el payload
   getUserId(): number | null {
     const payload = localStorage.getItem('payload');
-    console.log("Payload obtenido:", payload);
+    console.log('Payload recuperado:', payload); // Asegúrate de que el payload esté en el localStorage
     return payload ? JSON.parse(payload).id || null : null;
   }
+  
 }

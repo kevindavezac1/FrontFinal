@@ -39,15 +39,24 @@ export class TurnoService {
     return this.http.get(`${this.apiUrl}/obtenerEspecialidadesMedico/${id_medico}`, {headers: this.getHeaders()});
   }
 
+  asignarTurnoPaciente(data: any):Observable<any>{
+    
+    return this.http.post(`${this.apiUrl}/asignarTurnoPaciente`, data, { headers : this.getHeaders() });
+  }
+
+  //deberia cambiarlo a cobertura.service.ts
   obtenerCoberturaDelUsuario(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/coberturas/${id}`, {
       headers: this.getHeaders(),
     });
   }
 
+  //deberia cambiarlo a agenda.service.ts
   obtenerAgenda(id_medico: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/obtenerAgenda/${id_medico}`, { 
-      headers: this.getHeaders() });
+    const url = `${this.apiUrl}/obtenerAgenda/${id_medico}`;
+    console.log(`Llamando a la API: ${url}`); // Log para verificar la URL
+    return this.http.get(url, { headers: this.getHeaders() });
   }
+  
 
 }

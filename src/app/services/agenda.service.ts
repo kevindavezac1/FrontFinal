@@ -20,8 +20,6 @@ export class AgendaService {
     return new HttpHeaders(headersConfig);
   }
   
-
-
   // Método para crear una agenda
   crearAgenda(agenda: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/crearAgenda`, agenda, {
