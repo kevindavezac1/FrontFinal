@@ -59,4 +59,11 @@ export class TurnoService {
   }
   
 
+  obtenerTurnosPorMedicoYFecha(id_medico: number, fecha: string): Observable<any> {
+    const url = `${this.apiUrl}/obtenerTurnosMedico`;
+    const body = { id_medico, fecha };
+    return this.http.post(url, body, { headers: this.getHeaders() });
+  }
+  
+
 }

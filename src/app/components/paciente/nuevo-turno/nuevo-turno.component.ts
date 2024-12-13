@@ -39,6 +39,7 @@ export class NuevoTurnoComponent implements OnInit {
     notas: ['', Validators.required],
   });
 
+  mensajeNoDisponibilidad: string | null = null;
   cobertura: Cobertura | null = null;
   especialidades: Especialidad[] = [];
   profesionales: Profesional[] = [];
@@ -54,13 +55,13 @@ export class NuevoTurnoComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    console.log('Contenido de sessionStorage:', sessionStorage.getItem('datosUsuario'));
+    console.log('Contenido de localStorage:', localStorage.getItem('payload'));
     const userId = this.authService.getUserId();
     if (userId !== null) {
       await this.cargarCoberturas(userId);
-      await this.cargarEspecialidades(); // Llama aquí para cargar las especialidades
+      await this.cargarEspecialidades();
     } else {
-      console.error("No se encontró el ID del usuario.");
+      console.error('No se encontró el ID del usuario.');
     }
   }
 
@@ -70,10 +71,9 @@ export class NuevoTurnoComponent implements OnInit {
       if (response && response.payload) {
         this.cobertura = response.payload;
         console.log('Cobertura cargada:', this.cobertura);
-        
-        // Establecer el valor de cobertura en el formulario
+
         this.form.patchValue({
-          cobertura: this.cobertura?.id ? String(this.cobertura.id) : '' // Si es null, asigna un string vacío
+          cobertura: this.cobertura?.id ? String(this.cobertura.id) : '',
         });
       } else {
         console.warn('No se encontró cobertura asociada al usuario.');
@@ -87,17 +87,16 @@ export class NuevoTurnoComponent implements OnInit {
 
   async cargarEspecialidades(): Promise<void> {
     try {
-      console.log("Cargando especialidades..."); // Log para verificar ejecución
       const data: any = await firstValueFrom(this.turnoService.obtenerEspecialidades());
       if (data && data.payload) {
         this.especialidades = data.payload;
-        console.log("Especialidades cargadas:", this.especialidades);
+        console.log('Especialidades cargadas:', this.especialidades);
       } else {
-        console.warn("No se encontraron especialidades.");
+        console.warn('No se encontraron especialidades.');
         this.especialidades = [];
       }
     } catch (error) {
-      console.error("Error al cargar especialidades:", error);
+      console.error('Error al cargar especialidades:', error);
     }
   }
 
@@ -154,70 +153,97 @@ export class NuevoTurnoComponent implements OnInit {
     const profesionalSeleccionado = profesionalSeleccionadoValue
       ? parseInt(profesionalSeleccionadoValue, 10)
       : 0;
-
+  
+    this.mensajeNoDisponibilidad = null; // Reseteamos el mensaje
+  
     if (fechaSeleccionada && profesionalSeleccionado) {
       try {
-        const data: any = await firstValueFrom(
+        const agendaData: any = await firstValueFrom(
           this.turnoService.obtenerAgenda(profesionalSeleccionado)
         );
-        const agenda = data.payload;
-        const agendaDelDia = agenda.filter((item: any) => {
+        const agenda = agendaData.payload.filter((item: any) => {
           const fechaAgenda = new Date(item.fecha).toISOString().split('T')[0];
           return fechaAgenda === fechaSeleccionada;
         });
-
-        if (agendaDelDia.length > 0) {
-          this.idAgenda = agendaDelDia[0].id;
+  
+        if (agenda.length > 0) {
+          this.idAgenda = agenda[0].id;
+  
+          const turnosData: any = await firstValueFrom(
+            this.turnoService.obtenerTurnosPorMedicoYFecha(profesionalSeleccionado, fechaSeleccionada)
+          );
+          const turnosOcupados = turnosData.payload.map((turno: any) => turno.hora);
+  
           const horasDisponibles: string[] = [];
-          agendaDelDia.forEach((item: any) => {
-            const { hora_entrada, hora_salida } = item;
-            this.generarHorasDisponibles(hora_entrada, hora_salida, horasDisponibles);
+          agenda.forEach((item: any) => {
+            this.generarHorasDisponibles(item.hora_entrada, item.hora_salida, horasDisponibles);
           });
-
-          this.horasDisponibles = horasDisponibles;
-          this.form.get('hora')?.enable();
+          this.horasDisponibles = horasDisponibles.filter(hora => !turnosOcupados.includes(hora));
+  
+          if (this.horasDisponibles.length > 0) {
+            this.form.get('hora')?.enable();
+          } else {
+            this.form.get('hora')?.disable();
+            this.mensajeNoDisponibilidad = 'No hay horarios disponibles para este día.';
+          }
         } else {
+          this.mensajeNoDisponibilidad = 'No hay agenda disponible para esta fecha.';
+          this.horasDisponibles = [];
           this.form.get('hora')?.disable();
-          this.form.get('hora')?.setValue(null);
         }
       } catch (error) {
-        console.error('Error al obtener la agenda del profesional:', error);
+        console.error('Error al obtener horarios:', error);
+        this.mensajeNoDisponibilidad = 'Error al consultar los horarios. Inténtelo más tarde.';
       }
+    } else {
+      this.mensajeNoDisponibilidad = 'Debe seleccionar una fecha y un profesional válidos.';
+      this.form.get('hora')?.disable();
     }
   }
+  
+  
 
   generarHorasDisponibles(horaEntrada: string, horaSalida: string, horasDisponibles: string[]) {
     const startHour = new Date(`1970-01-01T${horaEntrada}:00`);
     const endHour = new Date(`1970-01-01T${horaSalida}:00`);
 
     for (let hora = startHour; hora < endHour; hora.setHours(hora.getHours() + 1)) {
-      const horaFormato = `${hora.getHours().toString().padStart(2, '0')}:00hs a ${(hora.getHours() + 1)
-        .toString()
-        .padStart(2, '0')}:00hs`;
+      const horaFormato = `${hora.getHours().toString().padStart(2, '0')}:00`;
       if (!horasDisponibles.includes(horaFormato)) {
         horasDisponibles.push(horaFormato);
       }
     }
   }
 
+  async obtenerTurnosDelDia(idMedico: number, fecha: string): Promise<string[]> {
+    // Simular llamada para obtener turnos ocupados (puedes reemplazar con una API real)
+    try {
+      const data: any = await firstValueFrom(
+        this.turnoService.obtenerTurnosPorMedicoYFecha(idMedico, fecha)
+      );
+      return data.payload.map((turno: any) => turno.hora);
+    } catch (error) {
+      console.error('Error al obtener turnos del día:', error);
+      return [];
+    }
+  }
+
   async enviar() {
-    const datosUser = localStorage.getItem('payload'); // Obtén el valor de 'payload'
-    
+    const datosUser = localStorage.getItem('payload');
+
     if (!datosUser) {
       console.warn('No se encontraron datos de usuario en localStorage');
       return;
     }
-  
-    const parsedData = JSON.parse(datosUser); // Convierte el string JSON a objeto
-    const idUsuario = parsedData?.id; // Accede al id del usuario
-  
+
+    const parsedData = JSON.parse(datosUser);
+    const idUsuario = parsedData?.id;
+
     if (!idUsuario) {
       console.warn('ID Usuario no encontrado:', parsedData);
       return;
     }
-  
-    console.log('ID Usuario:', idUsuario); 
-  
+
     if (this.form.valid && this.idAgenda !== null) {
       const turnoData = {
         nota: this.form.get('notas')?.value!,
@@ -227,9 +253,9 @@ export class NuevoTurnoComponent implements OnInit {
         id_paciente: idUsuario,
         id_cobertura: Number(this.form.get('cobertura')?.value),
       };
-  
+
       console.log('Datos del turno a enviar:', turnoData);
-  
+
       try {
         const response = await firstValueFrom(this.turnoService.asignarTurnoPaciente(turnoData));
         console.log('Respuesta del servidor:', response);

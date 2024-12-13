@@ -36,10 +36,14 @@
     <div class="fecha">
       <mat-form-field>
         <mat-label>Fecha</mat-label>
-        <input matInput type="date" formControlName="fecha" (change)="cambiarFechas()">
+        <input matInput type="date" formControlName="fecha" (blur)="cambiarFechas()">
       </mat-form-field>
     </div>
 
+    <div *ngIf="mensajeNoDisponibilidad" class="mensaje-aviso">
+      {{ mensajeNoDisponibilidad }}
+    </div>
+    
     <div class="hora">
       <mat-form-field>
         <mat-label>Hora</mat-label>
