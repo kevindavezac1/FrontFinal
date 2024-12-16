@@ -1,98 +1,43 @@
-/* Reset de márgenes y padding para el componente */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Estilo general del contenedor del componente */
-  .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 15px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Encabezado del componente */
-  h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo para los campos del formulario */
-  input,
-  select,
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-  }
-  
-  /* Botón de acción */
-  button {
-    background-color: #4caf50;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Lista de horarios cargados */
-  ul.horarios {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  ul.horarios li {
-    background-color: #f9f9f9;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-  
-  /* Estilo para el footer del componente */
-  footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #777;
-  }
+.gestion-agenda {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
 
-  .gestion-agenda {
-    padding: 20px;
-  }
-  
-  .date-picker {
-    margin-bottom: 20px;
-  }
-  
-  .table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 8px;
-  }
-  
-  .table th {
-    text-align: left;
-  }
-  
-  .horarios-existentes, .formulario-nuevos-horarios {
-    margin-top: 20px;
-  }
-  
-  button {
-    margin-top: 10px;
-  }
-  
-  
+.date-picker {
+  margin-bottom: 20px;
+}
+
+.horarios-existentes table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.horarios-existentes th,
+.horarios-existentes td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.formulario-nuevos-horarios {
+  margin-top: 20px;
+}
+
+.formulario-nuevos-horarios label {
+  margin-right: 10px;
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 5px;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

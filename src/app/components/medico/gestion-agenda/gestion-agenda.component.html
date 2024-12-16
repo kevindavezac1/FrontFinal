@@ -1,15 +1,14 @@
 <div class="gestion-agenda">
   <h1>Gestión de Agenda</h1>
 
-  <!-- Date Picker -->
+  <!-- Selector de Fecha -->
   <div class="date-picker">
     <label for="fechaSeleccionada">Selecciona una fecha:</label>
-    <input 
-      type="date" 
-      id="fechaSeleccionada" 
-      [(ngModel)]="fechaSeleccionada" 
-      (change)="cargarHorarios()"
-      [value]="fechaSeleccionada">
+    <input
+      type="date"
+      id="fechaSeleccionada"
+      [(ngModel)]="fechaSeleccionada"
+      (change)="cargarHorarios()">
   </div>
 
   <!-- Tabla de horarios existentes -->
@@ -31,33 +30,29 @@
     </table>
   </div>
 
-  <!-- Formulario para agregar nuevos horarios -->
-  <div class="formulario-nuevos-horarios">
+  <!-- Botón para agregar nuevos horarios -->
+  <button *ngIf="!agregandoHorarios" (click)="mostrarFormulario()">Agregar Nuevo Horario</button>
+
+  <!-- Formulario para agregar horarios -->
+  <div *ngIf="agregandoHorarios" class="formulario-nuevos-horarios">
     <h2>Agregar nuevos horarios</h2>
-    
-    <!-- Mostrar los horarios nuevos agregados -->
-    <div *ngFor="let horario of horariosNuevos; let i = index">
-      <div>
-        <label for="horaEntrada{{ i }}">Hora Entrada:</label>
-        <input 
-          type="time" 
-          id="horaEntrada{{ i }}" 
-          [(ngModel)]="horario.hora_entrada">
-      </div>
-      <div>
-        <label for="horaSalida{{ i }}">Hora Salida:</label>
-        <input 
-          type="time" 
-          id="horaSalida{{ i }}" 
-          [(ngModel)]="horario.hora_salida">
-      </div>
+
+    <div *ngFor="let horario of horariosNuevos; let i = index" class="horario-row">
+      <label for="horaEntrada{{ i }}">Hora Entrada:</label>
+      <select id="horaEntrada{{ i }}" [(ngModel)]="horario.hora_entrada">
+        <option *ngFor="let hora of opcionesHorarios" [value]="hora">{{ hora }}</option>
+      </select>
+      
+      <label for="horaSalida{{ i }}">Hora Salida:</label>
+      <select id="horaSalida{{ i }}" [(ngModel)]="horario.hora_salida">
+        <option *ngFor="let hora of opcionesHorarios" [value]="hora">{{ hora }}</option>
+      </select>
+      
       <button (click)="eliminarHorario(i)">Eliminar</button>
     </div>
 
-    <!-- Botón único para agregar un nuevo horario -->
-    <button *ngIf="horariosNuevos.length === 0" (click)="agregarNuevoHorario()">Agregar Horario</button>
-
-    <!-- Botón para guardar la agenda -->
+    <button (click)="agregarNuevoHorario()">Agregar Otro Horario</button>
     <button (click)="guardarAgenda()">Guardar Agenda</button>
+    <button (click)="cancelarFormulario()">Cancelar</button>
   </div>
 </div>

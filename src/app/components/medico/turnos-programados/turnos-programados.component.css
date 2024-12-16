@@ -1,0 +1,88 @@
+/* Estilo general de la tabla */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, 
+.table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+  width: 25%;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+/* Botón de acción */
+.btn-info {
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-info:hover {
+  background-color: #138496;
+}
+
+/* Fila de notas */
+.card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.card p {
+  margin: 0;
+  color: #555;
+}
+
+/* Estilo del campo de fecha */
+input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+input[type="date"]:focus {
+  border-color: #17a2b8;
+  outline: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #17a2b8;
+  border-radius: 4px;
+}
+
+/* Estilo para el mensaje cuando no hay turnos */
+.alert-info {
+  background-color: #f0f8ff;  /* Un azul muy claro */
+  color: #0c5460;             /* Color de texto oscuro */
+  border-color: #b8daff;      /* Borde suave en azul */
+  padding: 15px;
+  border-radius: 5px;         /* Bordes redondeados */
+  font-size: 1.1rem;          /* Un poco más grande para resaltar */
+  margin-top: 20px;           /* Separación superior */
+  text-align: center;         /* Centrar el texto */
+}
+
+.alert-info p {
+  margin: 0;                  /* Eliminar márgenes innecesarios */
+}

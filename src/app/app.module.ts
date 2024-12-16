@@ -33,6 +33,7 @@ import localeEs from '@angular/common/locales/es';
 import { DatosPersonalesComponent } from './components/paciente/datos-personales/datos-personales.component';
 registerLocaleData(localeEs, 'es');
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TurnosProgramadosComponent } from './components/medico/turnos-programados/turnos-programados.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NuevoTurnoComponent,
     GestionAgendaComponent,
     MisTurnosComponent,
-    DatosPersonalesComponent
+    DatosPersonalesComponent,
+    TurnosProgramadosComponent
     
 
   ],

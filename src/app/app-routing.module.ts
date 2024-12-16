@@ -11,6 +11,7 @@ import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-tur
 import { GestionAgendaComponent } from './components/medico/gestion-agenda/gestion-agenda.component';
 import { MisTurnosComponent } from './components/paciente/mis-turnos/mis-turnos.component';
 import { DatosPersonalesComponent } from './components/paciente/datos-personales/datos-personales.component';
+import { TurnosProgramadosComponent } from './components/medico/turnos-programados/turnos-programados.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent }, // Página pública
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'gestion-agenda', component:GestionAgendaComponent},
   {path: 'mis-turnos', component : MisTurnosComponent},
   {path: 'datos-personales', component: DatosPersonalesComponent},
+  {path: 'turnos-programados', component: TurnosProgramadosComponent},
   { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
 ];
 
