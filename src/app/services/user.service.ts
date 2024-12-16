@@ -23,6 +23,12 @@ export class UserService {
     return this.http.get(this.getUsersUrl, { headers });
   }
 
+  obtenerUsuarioPorId(id: number): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', token);
+    return this.http.get(`${this.urlActualizar}/obtenerUsuario/${id}`, { headers });
+  }
+
   actualizarUsuario(id: number, usuario: Usuario): Observable<any> {
     const token = this.authService.getToken(); 
     const headers = new HttpHeaders().set('Authorization', token); 

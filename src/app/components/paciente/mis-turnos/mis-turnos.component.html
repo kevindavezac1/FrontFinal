@@ -1,0 +1,38 @@
+<div class="container">
+    <h2 class="title">Mis Turnos</h2>
+    <div *ngIf="turnos.length > 0; else noTurnos">
+      <ul class="turno-list">
+        <li class="turno-item" *ngFor="let turno of turnos">
+          <div class="turno-header" (click)="mostrarDetalles(turno)">
+            <strong>
+              {{ turno.fecha | date:'EEEE d \'de\' MMMM \'de\' y' : 'es-ES' }}
+              a las {{ turno.hora }}
+            </strong>
+          </div>
+          <div *ngIf="turnoSeleccionado === turno" class="detalle-turno">
+            <h3>Detalles del Turno</h3>
+            <div class="detalle-info">
+              <p>
+                <span class="label">Fecha:</span>
+                {{ turnoSeleccionado.fecha | date:'EEEE d \'de\' MMMM \'de\' y' : 'es-ES' }}
+                a las {{ turnoSeleccionado.hora }}
+              </p>
+              <p>
+                <span class="label">Especialista:</span>
+                {{ turnoSeleccionado.nombre_medico }} {{ turnoSeleccionado.apellido_medico }}
+              </p>
+              <p>
+                <span class="label">Especialidad:</span>
+                {{ turnoSeleccionado.especialidad }}
+              </p>
+            </div>
+            <button class="cerrar-btn" (click)="cerrarDetalles()">Cerrar</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <ng-template #noTurnos>
+      <p class="no-turnos">No tienes turnos asignados.</p>
+    </ng-template>
+    <button class="volver-btn" routerLink="/">Volver al Inicio</button>
+  </div>

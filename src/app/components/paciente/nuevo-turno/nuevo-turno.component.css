@@ -1,6 +1,6 @@
-form {
-  max-width: 500px;
-  margin: 20px auto;
+.formulario {
+  max-width: 400px; /* Reducimos el ancho máximo */
+  margin: 20px auto; /* Centramos el formulario */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -8,11 +8,17 @@ form {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
 label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
   color: #333;
+  text-align: center; /* Centramos los labels */
 }
 
 input,
@@ -38,12 +44,20 @@ textarea {
   height: 80px;
 }
 
-button[type="submit"] {
+button[type="submit"],
+button[type="button"] {
   background-color: #007bff;
   color: white;
   font-weight: bold;
   cursor: pointer;
   border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="button"] {
+  background-color: #6c757d;
 }
 
 button[type="submit"]:disabled {
@@ -51,23 +65,18 @@ button[type="submit"]:disabled {
   cursor: not-allowed;
 }
 
-button[type="button"] {
-  background-color: #6c757d;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-}
-
 button[type="button"]:hover,
 button[type="submit"]:hover {
   opacity: 0.9;
 }
 
-button {
-  transition: background-color 0.3s ease;
+.mensaje-aviso {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
-button + button {
-  margin-left: 10px;
+.botones {
+  display: flex;
+  justify-content: space-between;
 }

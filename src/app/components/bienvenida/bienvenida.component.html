@@ -27,8 +27,8 @@
     <!-- Funcionalidades para pacientes -->
     <div *ngIf="userRole === 'Paciente'; else medicoContent">
       <button routerLink="/nuevo-turno">Nuevo turno</button>
-      <button routerLink="/profile">Mis turnos</button>
-      <button routerLink="/profile">Mis datos personales</button>
+      <button routerLink="/mis-turnos">Mis turnos</button>
+      <button routerLink="/datos-personales">Mis datos personales</button>
     </div>
 
     <!-- Funcionalidades para médicos -->

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Necesario para hacer peticiones HTTP
 import { AppRoutingModule } from './app-routing.module';
@@ -27,8 +27,12 @@ import { GestionCoberturasComponent } from './components/administrador/gestion-c
 import { NuevoTurnoComponent } from './components/paciente/nuevo-turno/nuevo-turno.component';
 import { GestionAgendaComponent } from './components/medico/gestion-agenda/gestion-agenda.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
-
+import { MisTurnosComponent } from './components/paciente/mis-turnos/mis-turnos.component';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+import { DatosPersonalesComponent } from './components/paciente/datos-personales/datos-personales.component';
+registerLocaleData(localeEs, 'es');
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     GestionCoberturasComponent,
     NuevoTurnoComponent,
     GestionAgendaComponent,
+    MisTurnosComponent,
+    DatosPersonalesComponent,
+
 
 
   ],
@@ -65,10 +72,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatDialogModule,
     MatButtonModule,
     MatDatepickerModule,
+    MatSnackBarModule
 
     
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

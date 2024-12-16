@@ -1,0 +1,111 @@
+/* General */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Arial', sans-serif;
+  color: #333333;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #0056b3;
+}
+
+/* Lista de turnos */
+.turno-list {
+  list-style: none;
+  padding: 0;
+}
+
+.turno-item {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.turno-item:hover {
+  background-color: #e9f5ff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.turno-header strong {
+  font-size: 16px;
+  color: #007bff;
+}
+
+/* Detalles del turno */
+.detalle-turno {
+  margin-top: 10px;
+  padding: 15px;
+  background-color: #f1f1f1;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.detalle-turno h3 {
+  margin: 0 0 10px 0;
+  color: #333333;
+  font-size: 18px;
+}
+
+.detalle-info p {
+  margin: 8px 0;
+}
+
+.detalle-info .label {
+  font-weight: bold;
+  color: #0056b3;
+}
+
+/* Botón para cerrar */
+.cerrar-btn {
+  display: block;
+  margin: 10px auto 0;
+  background-color: #dc3545;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cerrar-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* Mensaje sin turnos */
+.no-turnos {
+  text-align: center;
+  font-size: 16px;
+  color: #666666;
+}
+.volver-btn {
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 20px; /* Espaciado interno */
+  text-align: center; /* Alineación del texto */
+  text-decoration: none; /* Sin subrayado */
+  display: inline-block; /* Mostrar en línea */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 10px 2px; /* Margen */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.volver-btn:hover {
+  background-color: #0056b3; /* Color de fondo al pasar el ratón */
+}
