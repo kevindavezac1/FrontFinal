@@ -45,8 +45,10 @@ export class GestionCoberturasComponent implements OnInit {
   }
 
   eliminarCobertura(id: number): void {
+    console.log('Intentando eliminar cobertura con ID:', id); // Agregar log aquí
     this.coberturaService.deleteCobertura(id).subscribe({
-      next: () => {
+      next: (data) => {
+        console.log('Respuesta del backend al eliminar cobertura:', data); // Ver la respuesta del backend
         this.obtenerCoberturas(); // Actualiza la lista de coberturas después de eliminar una
       },
       error: (error) => {
@@ -55,8 +57,9 @@ export class GestionCoberturasComponent implements OnInit {
       },
       complete: () => {
         console.log('Eliminación de cobertura completada');
-        alert('Eliminación de cobertura completada')
+        alert('Eliminación de cobertura completada');
       }
     });
   }
+  
 }
