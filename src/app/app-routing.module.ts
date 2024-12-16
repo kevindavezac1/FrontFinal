@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'nuevo-turno', component: NuevoTurnoComponent},
   {path: 'gestion-agenda', component:GestionAgendaComponent},
   {path: 'mis-turnos', component : MisTurnosComponent},
-  {path:'datos-personales', component: DatosPersonalesComponent},
+  {path: 'datos-personales', component: DatosPersonalesComponent},
   { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
 ];
 

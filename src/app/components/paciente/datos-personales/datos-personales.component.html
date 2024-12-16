@@ -1,1 +1,77 @@
-<p>datos-personales works!</p>
+<div *ngIf="usuario">
+  <h2>Datos Personales</h2>
+  <form>
+    <!-- Nombre (solo lectura) -->
+    <label for="nombre">Nombre:</label>
+    <input id="nombre" [value]="usuario.nombre" disabled />
+
+    <!-- Apellido (solo lectura) -->
+    <label for="apellido">Apellido:</label>
+    <input id="apellido" [value]="usuario.apellido" disabled />
+
+    <!-- Fecha de nacimiento (solo lectura) -->
+    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+    <input
+      id="fecha_nacimiento"
+      [value]="usuario.fecha_nacimiento | date : 'yyyy-MM-dd'"
+      disabled
+    />
+
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input
+      id="email"
+      [(ngModel)]="usuario.email"
+      name="email"
+      [disabled]="!modoEdicion"
+    />
+
+    <!-- Teléfono -->
+    <label for="telefono">Teléfono:</label>
+    <input
+      id="telefono"
+      [(ngModel)]="usuario.telefono"
+      name="telefono"
+      [disabled]="!modoEdicion"
+    />
+
+    <!-- Password -->
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      [(ngModel)]="usuario.password"
+      name="password"
+      [disabled]="!modoEdicion"
+    />
+
+    <!-- Cobertura -->
+    <!-- Cobertura -->
+    <label for="cobertura">Cobertura:</label>
+    <select
+      id="cobertura"
+      [(ngModel)]="usuario.id_cobertura"
+      name="cobertura"
+      [disabled]="!modoEdicion"
+    >
+      <option *ngFor="let cobertura of coberturas" [value]="cobertura.id">
+        {{ cobertura.nombre }}
+      </option>
+    </select>
+
+    <!-- DNI (solo lectura) -->
+    <label for="dni">DNI:</label>
+    <input id="dni" [value]="usuario.dni" disabled />
+
+    <!-- Botones -->
+    <button type="button" *ngIf="!modoEdicion" (click)="habilitarEdicion()">
+      Editar
+    </button>
+    <button type="button" *ngIf="modoEdicion" (click)="guardarCambios()">
+      Guardar Cambios
+    </button>
+  </form>
+</div>
+
+<div *ngIf="loading">Cargando...</div>
+<div *ngIf="errorMessage">{{ errorMessage }}</div>

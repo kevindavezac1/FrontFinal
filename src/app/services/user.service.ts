@@ -31,10 +31,10 @@ export class UserService {
 
   actualizarUsuario(id: number, usuario: Usuario): Observable<any> {
     const token = this.authService.getToken(); 
-    const headers = new HttpHeaders().set('Authorization', token); 
+    const headers = new HttpHeaders().set('Authorization', token);
     
     return this.http.put(`${this.urlActualizar}/actualizarUsuario/${id}`, usuario, { headers });
   }
-
+  
   
 }

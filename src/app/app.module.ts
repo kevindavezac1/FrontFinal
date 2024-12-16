@@ -49,9 +49,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     NuevoTurnoComponent,
     GestionAgendaComponent,
     MisTurnosComponent,
-    DatosPersonalesComponent,
-
-
+    DatosPersonalesComponent
+    
 
   ],
   imports: [
@@ -74,7 +73,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatSnackBarModule
 
-    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' }
