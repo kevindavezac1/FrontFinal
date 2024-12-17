@@ -22,7 +22,7 @@ export class RegisterComponent {
 
   repeatPassword: string = ''; // Nuevo campo para repetir contraseña
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private authService: AuthService) {}
 
   onRegister() {
     if (!this.validatePasswords()) {
@@ -32,8 +32,13 @@ export class RegisterComponent {
 
     this.userService.createUser(this.user).subscribe(response => {
       if (response.codigo === 200) {
-        alert('Usuario creado con exito');
-        this.router.navigate(['/login']);
+        alert('Usuario creado con éxito');
+        const userRole = this.authService.getUserRole();
+        if (userRole === 'Operador') {
+          this.router.navigate(['']); // Ruta específica para el operador
+        } else {
+          this.router.navigate(['/login']);
+        }
       } else {
         console.error('Error al registrar usuario');
       }
@@ -42,9 +47,5 @@ export class RegisterComponent {
 
   validatePasswords(): boolean {
     return this.user.password === this.repeatPassword;
-  }
-
-  hasRole(): boolean {
-    return !!this.user.rol && this.user.rol !== 'Paciente';
   }
 }

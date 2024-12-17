@@ -34,6 +34,8 @@ import { DatosPersonalesComponent } from './components/paciente/datos-personales
 registerLocaleData(localeEs, 'es');
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TurnosProgramadosComponent } from './components/medico/turnos-programados/turnos-programados.component';
+import { GestionEspecialidadesComponent } from './components/administrador/gestion-especialidad/gestion-especialidad.component';
+import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuario-operador/crear-usuario-operador.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,10 @@ import { TurnosProgramadosComponent } from './components/medico/turnos-programad
     GestionAgendaComponent,
     MisTurnosComponent,
     DatosPersonalesComponent,
-    TurnosProgramadosComponent
+    TurnosProgramadosComponent,
+    GestionEspecialidadesComponent,
+    CrearUsuarioOperadorComponent
+
     
 
   ],
