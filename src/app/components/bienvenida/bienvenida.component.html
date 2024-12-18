@@ -25,7 +25,7 @@
     <p>Haz click en alguna de las funciones principales para acceder:</p>
 
     <!-- Funcionalidades para pacientes -->
-    <div *ngIf="userRole === 'Paciente'; else medicoContent">
+    <div *ngIf="userRole === 'Paciente'; else medicoContent" class="single-column-container">
       <button routerLink="/nuevo-turno">Nuevo turno</button>
       <button routerLink="/mis-turnos">Mis turnos</button>
       <button routerLink="/datos-personales">Mis datos personales</button>
@@ -33,25 +33,29 @@
 
     <!-- Funcionalidades para médicos -->
     <ng-template #medicoContent>
-      <div *ngIf="userRole === 'Medico'">
+      <div *ngIf="userRole === 'Medico'; else operadorRoles" class="role-container">
         <button routerLink="/turnos-programados">Turnos programados</button>
         <button routerLink="/gestion-agenda">Gestión de agenda</button>
       </div>
 
-      <!-- Funcionalidades para operadores -->
-      <div *ngIf="userRole === 'Operador'">
-        <button routerLink="crear-usuario-operador">Crear Usuario</button>
-        <button routerLink="/asignar-turno">Asignar turno</button>
-        <button routerLink="/ver-agenda-medico-operador">Gestion agenda</button>
-      </div>
+      <ng-template #operadorRoles>
+        <div *ngIf="userRole === 'Operador'; else adminRoles" class="role-container">
+          <button routerLink="/crear-usuario-operador">Registrar paciente</button>
+          <button routerLink="/asignar-turno">Asignar turno</button>
+          <button routerLink="/ver-agenda-medico-operador">Ver agenda médica</button>
+          <button routerLink="/ver-pacientes-dia">Ver pacientes del día</button>
+        </div>
 
-      <!-- Funcionalidades para administradores -->
-      <div *ngIf="userRole === 'Administrador'">
-        <button routerLink="/listar-usuarios">Ver usuarios</button>
-        <button routerLink="/crear-usuario">Crear usuario</button>
-        <button routerLink="/gestion-coberturas">Gestión de coberturas</button>
-        <button routerLink="/gestion-especialidad">Gestión de especialidades</button>
-      </div>
+        <ng-template #adminRoles>
+          <div *ngIf="userRole === 'Administrador'" class="role-container">
+            <button routerLink="/listar-usuarios">Gestión de usuarios</button>
+            <button routerLink="/crear-usuario">Registrar nuevo usuario</button>
+            <button routerLink="/gestion-coberturas">Gestión de coberturas</button>
+            <button routerLink="/gestion-especialidad">Gestión de especialidades</button>
+          
+          </div>
+        </ng-template>
+      </ng-template>
     </ng-template>
   </div>
 </ng-template>

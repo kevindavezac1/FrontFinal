@@ -24,7 +24,8 @@ export class GestionAgendaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.generarOpcionesHorarios(); // Inicializa las opciones de horario
+    this.generarOpcionesHorarios();// Inicializa las opciones de horario
+    this.cargarHorarios()
   }
 
   // Función para obtener la fecha actual

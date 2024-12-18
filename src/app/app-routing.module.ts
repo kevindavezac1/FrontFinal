@@ -15,24 +15,89 @@ import { TurnosProgramadosComponent } from './components/medico/turnos-programad
 import { GestionEspecialidadesComponent } from './components/administrador/gestion-especialidad/gestion-especialidad.component';
 import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
 import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-operador/ver-agenda-operador.component';
+import { RoleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent }, // Página pública
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  {path:'listar-usuarios',component:ListarUsuariosComponent},
-  { path: 'crear-usuario', component: CrearUserAdminComponent },
-  {path: 'gestion-coberturas', component:GestionCoberturasComponent},
-  {path: 'nuevo-turno', component: NuevoTurnoComponent},
-  {path: 'gestion-agenda', component:GestionAgendaComponent},
-  {path: 'mis-turnos', component : MisTurnosComponent},
-  {path: 'datos-personales', component: DatosPersonalesComponent},
-  {path: 'turnos-programados', component: TurnosProgramadosComponent},
-  {path: 'gestion-especialidad', component:GestionEspecialidadesComponent},
-  {path: 'crear-usuario-operador', component : RegisterComponent},
-  {path:'asignar-turno', component:AsignarTurnosOperadorComponent},
-  {path:'ver-agenda-medico-operador', component : VerAgendaOperadorComponent},
-  { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
+
+  // Rutas protegidas para administradores
+  { 
+    path: 'listar-usuarios',
+    component: ListarUsuariosComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Administrador' }
+  },
+  { 
+    path: 'crear-usuario',
+    component: CrearUserAdminComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Administrador' }
+  },
+  { 
+    path: 'gestion-coberturas',
+    component: GestionCoberturasComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Administrador' }
+  },
+  { 
+    path: 'gestion-especialidad',
+    component: GestionEspecialidadesComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Administrador' }
+  },
+
+  // Rutas protegidas para pacientes
+  { 
+    path: 'nuevo-turno',
+    component: NuevoTurnoComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Paciente' }
+  },
+  { 
+    path: 'mis-turnos',
+    component: MisTurnosComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Paciente' }
+  },
+  { 
+    path: 'datos-personales',
+    component: DatosPersonalesComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Paciente' }
+  },
+
+  // Rutas protegidas para médicos
+  { 
+    path: 'gestion-agenda',
+    component: GestionAgendaComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Medico' }
+  },
+  { 
+    path: 'turnos-programados',
+    component: TurnosProgramadosComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Medico' }
+  },
+
+  // Rutas protegidas para operadores
+  { 
+    path: 'asignar-turno',
+    component: AsignarTurnosOperadorComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Operador' }
+  },
+  { 
+    path: 'ver-agenda-medico-operador',
+    component: VerAgendaOperadorComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Operador' }
+  },
+
+  // Ruta de fallback para redirigir a la página de bienvenida
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

@@ -206,9 +206,9 @@ export class NuevoTurnoComponent implements OnInit {
   generarHorasDisponibles(horaEntrada: string, horaSalida: string, horasDisponibles: string[]) {
     const startHour = new Date(`1970-01-01T${horaEntrada}:00`);
     const endHour = new Date(`1970-01-01T${horaSalida}:00`);
-
-    for (let hora = startHour; hora < endHour; hora.setHours(hora.getHours() + 1)) {
-      const horaFormato = `${hora.getHours().toString().padStart(2, '0')}:00`;
+  
+    for (let hora = startHour; hora < endHour; hora.setMinutes(hora.getMinutes() + 30)) {  // Se cambia la suma de 1 hora a 30 minutos
+      const horaFormato = `${hora.getHours().toString().padStart(2, '0')}:${hora.getMinutes().toString().padStart(2, '0')}`;  // Formato de hora con minutos
       if (!horasDisponibles.includes(horaFormato)) {
         horasDisponibles.push(horaFormato);
       }

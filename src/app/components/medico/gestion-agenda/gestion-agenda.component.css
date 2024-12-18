@@ -1,43 +1,149 @@
+/* Estilos generales */
 .gestion-agenda {
   font-family: Arial, sans-serif;
-  margin: 20px;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 900px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Títulos */
+.gestion-agenda h1,
+.gestion-agenda h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Selector de fecha */
 .date-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
+.date-picker label {
+  font-weight: bold;
+}
+
+.date-picker input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+/* Tabla de horarios */
 .horarios-existentes table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .horarios-existentes th,
 .horarios-existentes td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px;
   text-align: center;
+  font-size: 0.95rem;
 }
 
+.horarios-existentes th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+.horarios-existentes tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.horarios-existentes tr:hover {
+  background-color: #f0f8ff;
+}
+
+/* Formulario para nuevos horarios */
 .formulario-nuevos-horarios {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 }
 
-.formulario-nuevos-horarios label {
-  margin-right: 10px;
+.horario-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-button {
-  margin-top: 10px;
-  margin-right: 5px;
-  padding: 5px 10px;
-  background-color: #007bff;
+.horario-row label {
+  font-weight: bold;
+  flex: 1;
+}
+
+.horario-row select {
+  flex: 2;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+.horario-row button {
+  flex: 1;
+  padding: 6px 10px;
+  background-color: #dc3545;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+}
+
+.horario-row button:hover {
+  background-color: #c82333;
+}
+
+/* Botones principales */
+button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
   background-color: #0056b3;
+}
+
+button:active {
+  background-color: #004085;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Espaciado para botones inferiores */
+.formulario-nuevos-horarios > button {
+  display: inline-block;
+  margin-right: 10px;
 }

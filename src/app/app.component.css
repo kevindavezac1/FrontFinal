@@ -1,27 +1,21 @@
-
- html, body {
+html, body {
   height: 100%;
   margin: 0;
-} 
-.header{
-  margin-bottom: 20px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; 
+  min-height: 100vh;
 }
 
 .content {
-  flex: 1; 
+  flex: 1; /* Esto empuja el footer al fondo */
 }
 
-footer {
-  margin-top: 20px;
+.footer {
+  background-color: #0033cc; /* Color del fondo (opcional) */
+  color: white; /* Color del texto */
   padding: 10px;
   text-align: center;
-  border-top: 1px solid #ccc;
-  width: 100%;
 }
-

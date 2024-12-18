@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { EspecialidadService } from '../../../services/especialidad.service';
-
 @Component({
   selector: 'app-gestion-especialidad',
   templateUrl: './gestion-especialidad.component.html',
@@ -11,30 +10,24 @@ export class GestionEspecialidadesComponent implements OnInit {
   nuevaEspecialidad: any = { descripcion: '' };
   especialidadSeleccionada: any = null;
   router: any;
-
   constructor(private especialidadService : EspecialidadService) {}
-
   ngOnInit(): void {
     this.obtenerEspecialidades();
   }
-
   obtenerEspecialidades(): void {
     this.especialidadService.getEspecialidades().subscribe((data) => {
       this.especialidades = data;
     });
   }
-
   agregarEspecialidad(): void {
     this.especialidadService.createEspecialidad(this.nuevaEspecialidad).subscribe(() => {
       this.obtenerEspecialidades();
       this.nuevaEspecialidad = { descripcion: '' };
     });
   }
-
   seleccionarEspecialidad(especialidad: any): void {
     this.especialidadSeleccionada = { ...especialidad };
   }
-
   actualizarEspecialidad(): void {
     if (this.especialidadSeleccionada) {
       this.especialidadService.updateEspecialidad(this.especialidadSeleccionada.id, this.especialidadSeleccionada).subscribe(() => {
@@ -43,7 +36,6 @@ export class GestionEspecialidadesComponent implements OnInit {
       });
     }
   }
-
   eliminarEspecialidad(id: number): void {
     this.especialidadService.deleteEspecialidad(id).subscribe({
       next: () => {
@@ -55,6 +47,4 @@ export class GestionEspecialidadesComponent implements OnInit {
       }
     });
   }
-
-
 }

@@ -1,43 +1,51 @@
-<!-- Campo de fecha seleccionado -->
-<div class="mb-3">
-  <label for="fecha" class="form-label">Selecciona la fecha:</label>
-  <input id="fecha" [(ngModel)]="fechaSeleccionada" (change)="onFechaChange()" type="date" class="form-control" />
-</div>
+<div class="gestion-turnos">
+  <!-- Campo de fecha seleccionado -->
+  <div class="mb-3">
+    <label for="fecha" class="form-label">Selecciona la fecha:</label>
+    <input
+      id="fecha"
+      [(ngModel)]="fechaSeleccionada"
+      (change)="onFechaChange()"
+      type="date"
+      class="form-control"
+    />
+  </div>
 
-<!-- Tabla de turnos programados -->
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Hora</th>
-      <th>Paciente</th>
-      <th>Edad</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <ng-container *ngFor="let turno of turnos">
-      <!-- Fila principal del turno -->
+  <!-- Tabla de turnos programados -->
+  <table class="table table-bordered">
+    <thead>
       <tr>
-        <td>{{ turno.hora }}</td>
-        <td>{{ turno.nombre_paciente }}</td>
-        <td>{{ calcularEdad(turno.fecha_nacimiento) }}</td>
-        <td>
-          <button class="btn btn-info" (click)="toggleNotas(turno)">
-            {{ turnoSeleccionado === turno ? 'Ocultar Notas' : 'Ver Notas' }}
-          </button>
-        </td>
+        <th>Hora</th>
+        <th>Paciente</th>
+        <th>Edad</th>
+        <th>Acciones</th>
       </tr>
-      <!-- Fila secundaria para mostrar notas -->
-      <tr *ngIf="turnoSeleccionado === turno">
-        <td colspan="4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Notas del turno</h5>
-              <p>{{ turno.nota || 'No hay notas disponibles.' }}</p>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let turno of turnos">
+        <!-- Fila principal del turno -->
+        <tr>
+          <td>{{ turno.hora }}</td>
+          <td>{{ turno.nombre_paciente }}</td>
+          <td>{{ calcularEdad(turno.fecha_nacimiento) }}</td>
+          <td>
+            <button class="btn btn-info" (click)="toggleNotas(turno)">
+              {{ turnoSeleccionado === turno ? "Ocultar Notas" : "Ver Notas" }}
+            </button>
+          </td>
+        </tr>
+        <!-- Fila secundaria para mostrar notas -->
+        <tr *ngIf="turnoSeleccionado === turno">
+          <td colspan="4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Notas del turno</h5>
+                <p>{{ turno.nota || "No hay notas disponibles." }}</p>
+              </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    </ng-container>
-  </tbody>
-</table>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
