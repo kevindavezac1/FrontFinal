@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { TurnosProgramadosComponent } from './components/medico/turnos-programados/turnos-programados.component';
 import { GestionEspecialidadesComponent } from './components/administrador/gestion-especialidad/gestion-especialidad.component';
 import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuario-operador/crear-usuario-operador.component';
+import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuar
     DatosPersonalesComponent,
     TurnosProgramadosComponent,
     GestionEspecialidadesComponent,
-    CrearUsuarioOperadorComponent
+    CrearUsuarioOperadorComponent,
+    AsignarTurnosOperadorComponent
 
     
 

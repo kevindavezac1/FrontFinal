@@ -13,6 +13,7 @@ import { MisTurnosComponent } from './components/paciente/mis-turnos/mis-turnos.
 import { DatosPersonalesComponent } from './components/paciente/datos-personales/datos-personales.component';
 import { TurnosProgramadosComponent } from './components/medico/turnos-programados/turnos-programados.component';
 import { GestionEspecialidadesComponent } from './components/administrador/gestion-especialidad/gestion-especialidad.component';
+import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent }, // Página pública
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'turnos-programados', component: TurnosProgramadosComponent},
   {path: 'gestion-especialidad', component:GestionEspecialidadesComponent},
   {path: 'crear-usuario-operador', component : RegisterComponent},
+  {path:'asignar-turno', component:AsignarTurnosOperadorComponent},
   { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
 ];
 

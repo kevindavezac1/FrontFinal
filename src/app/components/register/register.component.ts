@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { CoberturaService } from 'src/app/services/cobertura.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   user = {
     dni: '',
     nombre: '',
@@ -17,12 +19,26 @@ export class RegisterComponent {
     email: '',
     telefono: '',
     rol: 'Paciente',  // Valor predeterminado
-    fecha_nacimiento: ''
+    fecha_nacimiento: '',
+    id_cobertura: ''
+    
+
   };
-
+  coberturas: any[] = []; 
   repeatPassword: string = ''; // Nuevo campo para repetir contraseña
+  
 
-  constructor(private userService: UserService, private router: Router, private authService: AuthService) {}
+  constructor(private userService: UserService, private router: Router, private authService: AuthService, private coberturaService : CoberturaService) {}
+   async ngOnInit() {
+    
+    try {
+      const response = await firstValueFrom(this.coberturaService.getCoberturas());
+      this.coberturas = response || [];
+      console.log('Coberturas cargadas:', this.coberturas);
+    } catch (error) {
+      console.error('Error al cargar coberturas:', error);
+    }
+  }
 
   onRegister() {
     if (!this.validatePasswords()) {
@@ -48,4 +64,10 @@ export class RegisterComponent {
   validatePasswords(): boolean {
     return this.user.password === this.repeatPassword;
   }
+
+  hasRole(): boolean {
+    return !!this.user.rol && this.user.rol !== 'Paciente';
+  }
+
 }
+

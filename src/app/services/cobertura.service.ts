@@ -20,10 +20,11 @@ export class CoberturaService {
   getCoberturas(): Observable<any> {
     return this.http.get(this.apiUrl, { headers: this.getHeaders() });
   }
-
+  
   // Método para obtener la cobertura del usuario
   getCoberturaDelUsuario(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/${id}`,{headers: this.getHeaders()}); // Llama al endpoint que creamos en el backend
+    return this.http.get(`${this.apiUrl}/usuario/${id}`, { headers: this.getHeaders() });
+ // Llama al endpoint que creamos en el backend
   }
 
   createCobertura(cobertura: any): Observable<any> {

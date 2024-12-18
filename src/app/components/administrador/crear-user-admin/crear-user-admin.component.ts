@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
+import { first, firstValueFrom } from 'rxjs';
 import { TurnoService } from 'src/app/services/turno.service';
+import { CoberturaService } from 'src/app/services/cobertura.service';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -25,12 +26,12 @@ export class CrearUserAdminComponent implements OnInit {
   coberturas: any[] = []; 
   especialidades: any[] = []; 
 
-  constructor(private http: HttpClient, private turnoService: TurnoService) {}
+  constructor(private http: HttpClient, private turnoService: TurnoService, private coberturasService : CoberturaService) {}
 
   async ngOnInit() {
     // Cargar coberturas
     try {
-      const response = await this.http.get<any[]>('http://localhost:4000/api/coberturas').toPromise();
+      const response = await firstValueFrom(this.coberturasService.getCoberturas());
       this.coberturas = response || [];
       console.log('Coberturas cargadas:', this.coberturas);
     } catch (error) {
