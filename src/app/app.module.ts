@@ -37,6 +37,9 @@ import { TurnosProgramadosComponent } from './components/medico/turnos-programad
 import { GestionEspecialidadesComponent } from './components/administrador/gestion-especialidad/gestion-especialidad.component';
 import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuario-operador/crear-usuario-operador.component';
 import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
+import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-operador/ver-agenda-operador.component';
+
+
 
 @NgModule({
   declarations: [
@@ -57,9 +60,9 @@ import { AsignarTurnosOperadorComponent } from './components/operador/aignar-tur
     TurnosProgramadosComponent,
     GestionEspecialidadesComponent,
     CrearUsuarioOperadorComponent,
-    AsignarTurnosOperadorComponent
+    AsignarTurnosOperadorComponent,
+    VerAgendaOperadorComponent,
 
-    
 
   ],
   imports: [
@@ -80,8 +83,7 @@ import { AsignarTurnosOperadorComponent } from './components/operador/aignar-tur
     MatDialogModule,
     MatButtonModule,
     MatDatepickerModule,
-    MatSnackBarModule
-
+    MatSnackBarModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' }

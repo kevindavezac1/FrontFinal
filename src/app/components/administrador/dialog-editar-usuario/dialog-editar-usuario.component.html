@@ -35,6 +35,15 @@
     <input matInput [(ngModel)]="usuario.email" name="email">
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Cobertura</mat-label>
+    <mat-select [(ngModel)]="usuario.id_cobertura" name="id_cobertura">
+      <mat-option *ngFor="let cobertura of coberturas" [value]="cobertura.id">
+        {{ cobertura.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancelar</button>
     <button mat-button type="submit" color="primary">Guardar</button>

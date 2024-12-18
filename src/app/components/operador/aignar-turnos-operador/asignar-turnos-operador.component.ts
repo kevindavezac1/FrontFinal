@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -13,7 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-operador-asignar-turnos',
   templateUrl: 'asignar-turnos-operador.component.html',
-  styleUrls: ['asignar-turnos-operador.component.css']
+  styleUrls: ['asignar-turnos-operador.component.css'],
+  providers: [DatePipe]
 })
 
 export class AsignarTurnosOperadorComponent implements OnInit {
@@ -28,7 +30,7 @@ export class AsignarTurnosOperadorComponent implements OnInit {
   errorMessage: string = "";
 
   form = this.fb.group({
-    'cobertura': ['', Validators.required],
+    cobertura: [{ value: '', disabled: true }],
     'especialidad': ['', Validators.required],
     'profesional': ['', Validators.required],
     'fecha': ['', Validators.required],
@@ -44,20 +46,27 @@ export class AsignarTurnosOperadorComponent implements OnInit {
     private coberturaService: CoberturaService,
     private turnoService: TurnoService,
     private especialidaService: EspecialidadService,
-    private userService: UserService
+    private userService: UserService,
+    
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.cargarEspecialidades();
-    this.cargarCoberturas();
+    await this.cargarCoberturas();
     this.cargarPacientes(); // Cargar los pacientes al inicializar el componente
   }
 
   async cargarCoberturas() {
     try {
       const data: any = await firstValueFrom(this.coberturaService.getCoberturas());
-      this.coberturas = data.payload;
+      this.coberturas = data || [];
       console.log("Coberturas cargadas:", this.coberturas);
+
+      // Asigna la cobertura y deshabilita el campo
+      if (this.coberturas.length > 0) {
+        this.form.get('cobertura')?.setValue(this.coberturas[0].id);
+        this.form.get('cobertura')?.disable();
+      }
     } catch (error) {
       console.error("Error al cargar coberturas:", error);
     }
@@ -93,7 +102,6 @@ export class AsignarTurnosOperadorComponent implements OnInit {
     }
   }
   
-
 
   onPacienteChange(pacienteId: number): void {
     firstValueFrom(this.coberturaService.getCoberturaDelUsuario(pacienteId)).then(

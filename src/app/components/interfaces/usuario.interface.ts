@@ -1,4 +1,5 @@
 export interface Usuario {
+id_cobertura: any;
   dni?: string;
   id?: number;
   nombre?: string;

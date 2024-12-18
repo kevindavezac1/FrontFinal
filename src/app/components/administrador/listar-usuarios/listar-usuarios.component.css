@@ -1,104 +1,122 @@
+/* Estilos para el contenedor de filtros */
 .filter-container {
   display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.filter-field {
-  flex-grow: 1;
-}
-
-table {
-  margin-bottom: 20px; /* Añade espacio debajo de la tabla */
-}
-
-button[routerLink] {
-  display: inline-block;
-  background-color: #007bff; /* Azul básico */
-  color: white; /* Texto en blanco */
-  padding: 10px 16px; /* Espaciado interno */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes ligeramente redondeados */
-  font-size: 14px; /* Tamaño de fuente */
-  text-align: center; /* Centra el texto */
-  cursor: pointer; /* Cambia el cursor al pasar */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  transition: background-color 0.3s, box-shadow 0.3s; /* Transición suave */
-}
-
-button[routerLink]:hover {
-  background-color: #0056b3; /* Azul más oscuro al pasar */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa al pasar */
-}
-
-button[routerLink]:active {
-  background-color: #003d80; /* Azul aún más oscuro al hacer clic */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra reducida */
-}
-
-.container-button {
-  text-align: center; /* Centra el botón horizontalmente */
-  margin-top: 20px; /* Añade espacio superior */
-}
-
-.filter-container {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  align-items: center;
-}
-
-.filter-container input {
-  padding: 4px;
+.filter-container input,
+.filter-container select,
+.filter-container button {
+  padding: 10px;
   font-size: 14px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
 .filter-container button {
-  padding: 6px 12px;
-  font-size: 14px;
-  background-color: #1976d2;
+  background-color: #007bff;
   color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Estilos para el formulario de edición */
+.editar-formulario {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.editar-formulario h3 {
+  margin-top: 0;
+}
+
+.editar-formulario label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.editar-formulario input,
+.editar-formulario select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.editar-formulario button {
+  padding: 10px 20px;
+  font-size: 14px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.filter-container button:hover {
-  background-color: #155fa0;
+.editar-formulario button[type="submit"] {
+  background-color: #28a745;
+  color: white;
 }
 
-.back-button-container {
-  text-align: center; /* Centra el botón horizontalmente */
-  margin-top: 20px; /* Espaciado superior para separarlo de la tabla */
+.editar-formulario button[type="submit"]:hover {
+  background-color: #218838;
 }
 
-.back-button-container button {
-  display: inline-block;
-  padding: 10px 20px; /* Tamaño del botón */
-  font-size: 16px; /* Fuente más visible */
-  color: #fff; /* Texto blanco */
-  background-color: #28a745; /* Verde claro */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
+.editar-formulario button[type="button"] {
+  background-color: #dc3545;
+  color: white;
+}
+
+.editar-formulario button[type="button"]:hover {
+  background-color: #c82333;
+}
+
+/* Estilos para el botón de volver al inicio */
+.medio {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.medio button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
 }
 
-.back-button-container button:hover {
-  background-color: #218838; /* Verde más oscuro al pasar */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Sombra más intensa al pasar */
-}
-
-.back-button-container button:active {
-  background-color: #1e7e34; /* Verde aún más oscuro al hacer clic */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra reducida */
-}
-
-.medio{
-  display: flex;
-  justify-content: center;
+.medio button:hover {
+  background-color: #0056b3;
 }

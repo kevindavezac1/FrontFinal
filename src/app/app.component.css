@@ -1,75 +1,27 @@
-/* Estilo general */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f7fa;
-    color: #333;
-  }
-  
-  /* Header */
-  .header {
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .header h1 {
-    margin: 0;
-    font-size: 24px;
-  }
-  
-  .header span {
-    margin-right: 10px;
-    font-weight: bold;
-  }
-  
-  .header button {
-    background-color: white;
-    color: #007bff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .header button:hover {
-    background-color: #0056b3;
-    color: white;
-  }
-  
-  /* Content */
-  .content {
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-  
-  .content h2 {
-    color: #007bff;
-  }
-  
-  .content p {
-    line-height: 1.6;
-    margin-bottom: 10px;
-  }
-  
-  /* Botones generales */
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #007bff;
-    color: white;
-  }
-  
+
+ html, body {
+  height: 100%;
+  margin: 0;
+} 
+.header{
+  margin-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.content {
+  flex: 1; 
+}
+
+footer {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  width: 100%;
+}
+

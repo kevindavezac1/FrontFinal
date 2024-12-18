@@ -60,7 +60,8 @@ export class ListarUsuariosComponent implements OnInit {
 
   abrirEditarUsuario(usuario: Usuario): void {
     const dialogRef = this.dialog.open(DialogoEditarUsuarioComponent, {
-      width: '400px',
+      width: '600px', // Ajusta el ancho del diálogo
+      maxHeight: '80vh', // Ajusta la altura máxima del diálogo
       data: { ...usuario }
     });
   
@@ -72,7 +73,7 @@ export class ListarUsuariosComponent implements OnInit {
       }
     });
   }
-  
+
   actualizarUsuario(usuario: Usuario): void {
     if (usuario.id !== undefined) {
       this.userService.actualizarUsuario(usuario.id, usuario).subscribe({

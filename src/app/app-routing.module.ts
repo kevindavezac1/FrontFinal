@@ -14,6 +14,7 @@ import { DatosPersonalesComponent } from './components/paciente/datos-personales
 import { TurnosProgramadosComponent } from './components/medico/turnos-programados/turnos-programados.component';
 import { GestionEspecialidadesComponent } from './components/administrador/gestion-especialidad/gestion-especialidad.component';
 import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
+import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-operador/ver-agenda-operador.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent }, // Página pública
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'gestion-especialidad', component:GestionEspecialidadesComponent},
   {path: 'crear-usuario-operador', component : RegisterComponent},
   {path:'asignar-turno', component:AsignarTurnosOperadorComponent},
+  {path:'ver-agenda-medico-operador', component : VerAgendaOperadorComponent},
   { path: '**', redirectTo: '' }, // Redirigir a la página de bienvenida si no coincide con ninguna ruta
 ];
 

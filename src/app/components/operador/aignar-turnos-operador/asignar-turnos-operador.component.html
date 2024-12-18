@@ -35,7 +35,7 @@
                 <mat-label>Profesional</mat-label>
                 <mat-select formControlName="profesional" (selectionChange)="onProfesionalChange($event.value)">
                     <mat-option *ngFor="let profesional of profesionales" [value]="profesional.id_medico">
-                        {{ profesional.nombre }}
+                        {{ profesional.nombre }} {{profesional.apellido}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
@@ -44,11 +44,12 @@
             <mat-form-field>
                 <mat-label>Fecha</mat-label>
                 <mat-select formControlName="fecha">
-                    <mat-option *ngFor="let fecha of fechasDisponibles" [value]="fecha">
-                        {{ fecha }}
-                    </mat-option>
+                  <mat-option *ngFor="let fecha of fechasDisponibles" [value]="fecha">
+                    {{ fecha }}
+                  </mat-option>
                 </mat-select>
-            </mat-form-field>
+              </mat-form-field>
+              
         </div>
         <div class="hora">
             <mat-form-field>

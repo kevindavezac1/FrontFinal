@@ -21,16 +21,18 @@ export class RegisterComponent implements OnInit {
     rol: 'Paciente',  // Valor predeterminado
     fecha_nacimiento: '',
     id_cobertura: ''
-    
-
   };
   coberturas: any[] = []; 
   repeatPassword: string = ''; // Nuevo campo para repetir contraseña
   
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService,
+    private coberturaService : CoberturaService
+  ) {}
 
-  constructor(private userService: UserService, private router: Router, private authService: AuthService, private coberturaService : CoberturaService) {}
-   async ngOnInit() {
-    
+  async ngOnInit() {
     try {
       const response = await firstValueFrom(this.coberturaService.getCoberturas());
       this.coberturas = response || [];
@@ -41,6 +43,11 @@ export class RegisterComponent implements OnInit {
   }
 
   onRegister() {
+    if (!this.isFormValid()) {
+      alert('Por favor, completa todos los campos requeridos.');
+      return;
+    }
+
     if (!this.validatePasswords()) {
       alert('Las contraseñas no coinciden. Por favor, verifica.');
       return;
@@ -65,9 +72,22 @@ export class RegisterComponent implements OnInit {
     return this.user.password === this.repeatPassword;
   }
 
+  isFormValid(): boolean {
+    // Verificar que todos los campos requeridos no estén vacíos
+    return (
+      this.user.dni !== '' &&
+      this.user.nombre !== '' &&
+      this.user.apellido !== '' &&
+      this.user.password !== '' &&
+      this.user.email !== '' &&
+      this.user.telefono !== '' &&
+      this.user.fecha_nacimiento !== '' &&
+      this.user.id_cobertura !== '' &&
+      this.validatePasswords()  // Verificar que las contraseñas coincidan
+    );
+  }
+
   hasRole(): boolean {
     return !!this.user.rol && this.user.rol !== 'Paciente';
   }
-
 }
-

@@ -64,7 +64,6 @@ export class TurnoService {
     return this.http.post(url, body, { headers: this.getHeaders() });
   }
   
-
   obtenerTurnoPaciente(id_paciente: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/obtenerTurnoPaciente/${id_paciente}`, {
       headers: this.getHeaders(),
