@@ -1,7 +1,7 @@
 <div class="formulario">
     <form [formGroup]="form">
-        <div class="paciente">
-            <mat-form-field>
+        <div class="form-group paciente">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Asignar turno al paciente</mat-label>
                 <mat-select formControlName="paciente" (selectionChange)="onPacienteChange($event.value)">
                     <mat-option *ngFor="let paciente of pacientes" [value]="paciente.id">
@@ -10,18 +10,20 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="cobertura">
-            <mat-form-field>
+
+        <div class="form-group cobertura">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Cobertura</mat-label>
                 <mat-select formControlName="cobertura">
                     <mat-option *ngFor="let cobertura of coberturas" [value]="cobertura.id">
-                        {{cobertura.nombre}}
+                        {{ cobertura.nombre }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="especialidad">
-            <mat-form-field>
+
+        <div class="form-group especialidad">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Especialidad</mat-label>
                 <mat-select formControlName="especialidad" (selectionChange)="onEspecialidadChange($event.value)">
                     <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad.id">
@@ -30,29 +32,31 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="profesional">
-            <mat-form-field>
+
+        <div class="form-group profesional">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Profesional</mat-label>
                 <mat-select formControlName="profesional" (selectionChange)="onProfesionalChange($event.value)">
                     <mat-option *ngFor="let profesional of profesionales" [value]="profesional.id_medico">
-                        {{ profesional.nombre }} {{profesional.apellido}}
+                        {{ profesional.nombre }} {{ profesional.apellido }}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="fecha">
-            <mat-form-field>
+
+        <div class="form-group fecha">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Fecha</mat-label>
                 <mat-select formControlName="fecha">
-                  <mat-option *ngFor="let fecha of fechasDisponibles" [value]="fecha">
-                    {{ fecha }}
-                  </mat-option>
+                    <mat-option *ngFor="let fecha of fechasDisponibles" [value]="fecha">
+                        {{ fecha }}
+                    </mat-option>
                 </mat-select>
-              </mat-form-field>
-              
+            </mat-form-field>
         </div>
-        <div class="hora">
-            <mat-form-field>
+
+        <div class="form-group hora">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Hora</mat-label>
                 <mat-select formControlName="hora">
                     <mat-option *ngFor="let hora of horasDisponibles" [value]="hora">
@@ -61,14 +65,20 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="notas">
-            <mat-form-field>
+
+        <div class="form-group notas">
+            <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Notas</mat-label>
                 <input matInput type="text" formControlName="notas">
             </mat-form-field>
         </div>
-        <div class="botones">
-            <button type="button" (click)="asignarTurno()">ASIGNAR TURNO</button>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+        <div class="form-group botones">
+            <button mat-raised-button color="primary" type="button" (click)="asignarTurno()">Asignar Turno</button>
         </div>
     </form>
 </div>
