@@ -39,6 +39,7 @@ import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuar
 import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
 import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-operador/ver-agenda-operador.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -85,7 +86,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatDatepickerModule,
     MatSnackBarModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule
+   
    
   ],
   providers: [

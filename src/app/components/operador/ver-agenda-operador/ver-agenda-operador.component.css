@@ -1,0 +1,84 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color:gray;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  /* Formulario */
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    width: 250px;
+  }
+  
+  button[mat-raised-button] {
+    height: 40px;
+    font-weight: bold;
+  }
+  
+  /* Tabla */
+  table {
+    width: 90%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: rgb(148, 136, 248);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  th {
+    background-color: #4caf50;
+    color: white;
+    text-align: left;
+    padding: 10px;
+  }
+  
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #88a1f5;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #88a1f5;
+  }
+  
+  button[mat-icon-button] {
+    color: #4caf50;
+  }
+  
+  mat-icon {
+    vertical-align: middle;
+  }
+  
+  /* Menú de acciones */
+  mat-menu {
+    background-color: rgb(22, 25, 153);
+  }
+  
+  mat-menu-item {
+    color: #4caf50;
+  }
+  
+  mat-menu-item:hover {
+    background-color: #e8f5e9;
+  }
+  
