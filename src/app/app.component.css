@@ -10,12 +10,12 @@ html, body {
 }
 
 .content {
-  flex: 1; /* Esto empuja el footer al fondo */
+  flex: 1; 
 }
 
 .footer {
-  background-color: #0033cc; /* Color del fondo (opcional) */
-  color: white; /* Color del texto */
+  background-color: #0033cc; 
+  color: white;
   padding: 10px;
   text-align: center;
 }

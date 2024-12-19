@@ -1,13 +1,9 @@
 import { DatePipe } from '@angular/common';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-
-import { AuthService } from 'src/app/services/auth.service';
 import { CoberturaService } from 'src/app/services/cobertura.service';
-import { EspecialidadService } from 'src/app/services/especialidad.service';
 import { TurnoService } from 'src/app/services/turno.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -42,10 +38,8 @@ export class AsignarTurnosOperadorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService,
     private coberturaService: CoberturaService,
     private turnoService: TurnoService,
-    private especialidaService: EspecialidadService,
     private userService: UserService,
     
   ) {}
@@ -53,7 +47,7 @@ export class AsignarTurnosOperadorComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.cargarEspecialidades();
     await this.cargarCoberturas();
-    this.cargarPacientes(); // Cargar los pacientes al inicializar el componente
+    this.cargarPacientes(); 
   }
 
   async cargarCoberturas() {
@@ -62,7 +56,7 @@ export class AsignarTurnosOperadorComponent implements OnInit {
       this.coberturas = data || [];
       console.log("Coberturas cargadas:", this.coberturas);
 
-      // Asigna la cobertura y deshabilita el campo
+  
       if (this.coberturas.length > 0) {
         this.form.get('cobertura')?.setValue(this.coberturas[0].id);
         this.form.get('cobertura')?.disable();
@@ -90,7 +84,7 @@ export class AsignarTurnosOperadorComponent implements OnInit {
       const response = await firstValueFrom(this.userService.obtenerUsuarios());
       console.log('Respuesta completa del servidor:', response);
   
-      // Asegúrate de que response y payload existan
+
       if (response && response.payload) {
         this.pacientes = response.payload.filter((usuario: { rol: string }) => usuario.rol === 'Paciente');
         console.log('Pacientes cargados:', this.pacientes);
@@ -108,7 +102,7 @@ export class AsignarTurnosOperadorComponent implements OnInit {
       (response) => {
         if (response && response.payload) {
           const cobertura = response.payload;
-          this.form.patchValue({ cobertura: cobertura.id }); // Asignar la cobertura al formulario
+          this.form.patchValue({ cobertura: cobertura.id });
           console.log('Cobertura del usuario:', cobertura);
         } else {
           console.error('La respuesta no contiene una cobertura válida');

@@ -72,42 +72,5 @@ export class VerAgendaOperadorComponent implements OnInit {
     this.cargarTurnos();
   }
 
-  // modificarHorarios(doctor: any) {
-  //   const dialogRef = this.dialog.open(GestionAgendasComponent, {
-  //     width: 'auto',
-  //     height: 'auto',
-  //     panelClass: 'custom-dialog-container',
-  //     data: { horarios: { entrada: '09:00', salida: '17:00' } } 
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       console.log('Nuevo horario guardado:', result);
-  //     }
-  //   });
-  // }
-
-  // agregarTurnos(doctor: any) {
-  //   const dialogRef = this.dialog.open(OperadorAsignarTurnosComponent, {
-  //     width: '800px',
-  //     height: '700px',
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       console.log('Nuevo horario guardado:', result);
-  //     }
-  //   });
-  // }
-
-  // verTurnosConfirmados(doctor: any) {
-  //   const dialogRef = this.dialog.open(TurnosProgramadosComponent, {
-  //     width: '800px',
-  //     height: '700px',
-  //   });
-  // }
-
-  // cancelarTurnos(doctor : any){
-  //   const dialogRef = this.dialog.open(TurnosProgramadosComponent);
-  // }
+  
 }

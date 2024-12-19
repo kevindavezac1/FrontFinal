@@ -43,7 +43,6 @@
       </select>
     </div>
 
-
     <div>
       <label for="id_cobertura">Cobertura:</label>
       <select id="id_cobertura" [(ngModel)]="user.id_cobertura" name="id_cobertura" required #id_cobertura="ngModel">
@@ -52,6 +51,7 @@
       
     </div>
 
+    <button (click)="onCancel()">Cancelar</button>
     <button type="submit">Registrar</button>
   </form>
 </div>

@@ -1,77 +1,70 @@
-/* Asegura un diseño centrado y espaciado adecuado */
+/* Diálogo: diseño general */
 mat-dialog-container {
+  padding: 32px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor del contenido del formulario */
+.dialog-content {
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  max-width: 600px; /* Ajusta el ancho máximo del diálogo */
-  width: 100%;
-  max-height: 80vh; /* Ajusta la altura máxima del diálogo */
-  overflow-y: auto; /* Permite el desplazamiento vertical */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #ffffff; /* Fondo blanco */
+  gap: 20px;
 }
 
-/* Estiliza los campos del formulario */
+/* Apariencia de los campos */
 mat-form-field {
   width: 100%;
-  margin-bottom: 16px;
 }
 
-/* Estilo para los botones de acción */
-mat-dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  margin-top: 16px;
-}
-
-/* Botones dentro de las acciones */
-mat-dialog-actions button {
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: bold;
+mat-form-field input, mat-form-field select {
   border-radius: 4px;
 }
 
-/* Botón de cancelar */
-mat-dialog-actions button[mat-dialog-close] {
-  background-color: #f44336; /* Rojo */
-  color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-
-mat-dialog-actions button[mat-dialog-close]:hover {
-  background-color: #d32f2f;
-}
-
-/* Botón de guardar */
-mat-dialog-actions button[color="primary"] {
-  background-color: #3f51b5; /* Azul */
-  color: #ffffff;
-  transition: background-color 0.3s ease;
-}
-
-mat-dialog-actions button[color="primary"]:hover {
-  background-color: #303f9f;
-}
-
-/* Título del diálogo */
+/* Estilo de los títulos */
 mat-dialog-title {
   font-size: 24px;
   font-weight: bold;
+  color: #2c387e; /* Azul oscuro */
   margin-bottom: 16px;
-  color: #3f51b5; /* Azul */
+  text-align: center;
 }
 
-/* Estilo para los campos de entrada */
-mat-form-field input, mat-form-field select {
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  transition: border-color 0.3s ease;
+/* Botones de acción */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
 }
 
-mat-form-field input:focus, mat-form-field select:focus {
-  border-color: #3f51b5; /* Azul */
+.dialog-actions button {
+  padding: 8px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
+}
+
+/* Botón Cancelar */
+.dialog-actions button[mat-dialog-close] {
+  background-color: #e57373; /* Rojo suave */
+  color: white;
+}
+
+.dialog-actions button[mat-dialog-close]:hover {
+  background-color: #d32f2f;
+}
+
+/* Botón Guardar */
+.dialog-actions button[color="primary"] {
+  background-color: #4caf50; /* Verde */
+  color: white;
+}
+
+.dialog-actions button[color="primary"]:hover {
+  background-color: #388e3c;
 }

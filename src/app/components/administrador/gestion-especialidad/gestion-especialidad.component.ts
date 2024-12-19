@@ -44,6 +44,10 @@ export class GestionEspecialidadesComponent implements OnInit {
       error: (error) => {
         console.error('Error al eliminar especialidad:', error);
         alert('No se puede eliminar la especialidad porque está asociada a un médico.');
+      },
+      complete: () => {
+        console.log('Eliminación de especialidad completada');
+        alert('Eliminación de especialidad completada');
       }
     });
   }

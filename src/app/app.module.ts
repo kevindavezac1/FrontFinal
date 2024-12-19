@@ -38,6 +38,7 @@ import { GestionEspecialidadesComponent } from './components/administrador/gesti
 import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuario-operador/crear-usuario-operador.component';
 import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
 import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-operador/ver-agenda-operador.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -84,6 +85,8 @@ import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-ope
     MatButtonModule,
     MatDatepickerModule,
     MatSnackBarModule,
+    MatIconModule
+   
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'es' }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service'; // Asegúrate de que tengas el servicio AuthService
+import { AuthService } from './services/auth.service'; 
 
 @Component({
   selector: 'app-root',
@@ -21,13 +21,12 @@ export class AppComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (token) {
       this.isLoggedIn = true;
-      this.userName = this.authService.getUserName();  // Método que extrae el nombre del usuario desde el token // Método que extrae el rol del usuario desde el token
+      this.userName = this.authService.getUserName();  
     } else {
       this.isLoggedIn = false;
     }
   }
 
-  // Este método puede ser llamado cuando el usuario cierre sesión
   onLogout() {
     localStorage.removeItem('token');
     this.isLoggedIn = false;

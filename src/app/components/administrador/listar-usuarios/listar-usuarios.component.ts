@@ -5,6 +5,7 @@ import { DialogoEditarUsuarioComponent } from '../dialog-editar-usuario/dialog-e
 import { MatDialog } from '@angular/material/dialog';
 import { lastValueFrom } from 'rxjs';
 
+
 @Component({
   selector: 'app-listar-usuarios',
   templateUrl: './listar-usuarios.component.html',

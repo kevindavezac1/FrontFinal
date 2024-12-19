@@ -216,7 +216,7 @@ export class NuevoTurnoComponent implements OnInit {
   }
 
   async obtenerTurnosDelDia(idMedico: number, fecha: string): Promise<string[]> {
-    // Simular llamada para obtener turnos ocupados (puedes reemplazar con una API real)
+
     try {
       const data: any = await firstValueFrom(
         this.turnoService.obtenerTurnosPorMedicoYFecha(idMedico, fecha)

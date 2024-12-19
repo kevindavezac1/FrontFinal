@@ -127,20 +127,27 @@ export class GestionAgendaComponent implements OnInit {
   async guardarAgenda(): Promise<void> {
     const userId = this.authService.getUserId();
     if (!userId || this.horariosNuevos.length === 0) return;
-
+  
     for (const horario of this.horariosNuevos) {
       if (!horario.hora_entrada || !horario.hora_salida) {
         console.error('Completa todas las horas antes de guardar.');
+        alert('Completa todas las horas antes de guardar.');
         return;
       }
-
+  
+      if (horario.hora_salida <= horario.hora_entrada) {
+        console.error('La hora de salida no puede ser anterior o igual a la hora de entrada.');
+        alert('La hora de salida no puede ser anterior o igual a la hora de entrada.');
+        return;
+      }
+  
       if (this.verificarSuperposicion(horario.hora_entrada, horario.hora_salida)) {
         console.error('El horario se superpone con uno existente.');
         alert('El horario se superpone con uno existente.');
         return;
       }
     }
-
+  
     // Guardar los horarios si no hay conflictos
     this.horariosNuevos.forEach(horario => {
       const agenda = {
@@ -150,7 +157,7 @@ export class GestionAgendaComponent implements OnInit {
         hora_entrada: horario.hora_entrada,
         hora_salida: horario.hora_salida
       };
-
+  
       this.agendaService.crearAgenda(agenda).subscribe(
         () => {
           this.horariosNuevos = [];
@@ -160,4 +167,5 @@ export class GestionAgendaComponent implements OnInit {
       );
     });
   }
+  
 }

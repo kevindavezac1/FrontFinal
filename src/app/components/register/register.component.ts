@@ -18,12 +18,12 @@ export class RegisterComponent implements OnInit {
     password: '',
     email: '',
     telefono: '',
-    rol: 'Paciente',  // Valor predeterminado
+    rol: 'Paciente',  
     fecha_nacimiento: '',
     id_cobertura: ''
   };
   coberturas: any[] = []; 
-  repeatPassword: string = ''; // Nuevo campo para repetir contraseña
+  repeatPassword: string = ''; 
   
   constructor(
     private userService: UserService,
@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
         alert('Usuario creado con éxito');
         const userRole = this.authService.getUserRole();
         if (userRole === 'Operador') {
-          this.router.navigate(['']); // Ruta específica para el operador
+          this.router.navigate(['']); 
         } else {
           this.router.navigate(['/login']);
         }
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnInit {
   }
 
   isFormValid(): boolean {
-    // Verificar que todos los campos requeridos no estén vacíos
+    
     return (
       this.user.dni !== '' &&
       this.user.nombre !== '' &&
@@ -83,11 +83,16 @@ export class RegisterComponent implements OnInit {
       this.user.telefono !== '' &&
       this.user.fecha_nacimiento !== '' &&
       this.user.id_cobertura !== '' &&
-      this.validatePasswords()  // Verificar que las contraseñas coincidan
+      this.validatePasswords()  
     );
   }
 
   hasRole(): boolean {
     return !!this.user.rol && this.user.rol !== 'Paciente';
   }
+
+  onCancel() {
+    this.router.navigate(['/']); 
+  }
+  
 }

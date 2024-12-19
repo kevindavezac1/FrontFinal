@@ -1,15 +1,15 @@
 <div *ngIf="usuario">
   <h2>Datos Personales</h2>
   <form>
-    <!-- Nombre (solo lectura) -->
+
     <label for="nombre">Nombre:</label>
     <input id="nombre" [value]="usuario.nombre" disabled />
 
-    <!-- Apellido (solo lectura) -->
+
     <label for="apellido">Apellido:</label>
     <input id="apellido" [value]="usuario.apellido" disabled />
 
-    <!-- Fecha de nacimiento (solo lectura) -->
+
     <label for="fecha_nacimiento">Fecha de nacimiento:</label>
     <input
       id="fecha_nacimiento"
@@ -17,7 +17,7 @@
       disabled
     />
 
-    <!-- Email -->
+
     <label for="email">Email:</label>
     <input
       id="email"
@@ -26,7 +26,7 @@
       [disabled]="!modoEdicion"
     />
 
-    <!-- Teléfono -->
+ 
     <label for="telefono">Teléfono:</label>
     <input
       id="telefono"
@@ -35,7 +35,7 @@
       [disabled]="!modoEdicion"
     />
 
-    <!-- Password -->
+
     <label for="password">Password:</label>
     <input
       id="password"
@@ -45,8 +45,7 @@
       [disabled]="!modoEdicion"
     />
 
-    <!-- Cobertura -->
-    <!-- Cobertura -->
+
     <label for="cobertura">Cobertura:</label>
     <select
       id="cobertura"
@@ -59,11 +58,11 @@
       </option>
     </select>
 
-    <!-- DNI (solo lectura) -->
+
     <label for="dni">DNI:</label>
     <input id="dni" [value]="usuario.dni" disabled />
 
-    <!-- Botones -->
+
     <button type="button" *ngIf="!modoEdicion" (click)="habilitarEdicion()">
       Editar
     </button>

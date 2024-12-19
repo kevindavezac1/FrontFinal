@@ -1,11 +1,11 @@
 <div class="gestion-especialidad">
   <h2>Gestión de Especialidades</h2>
-  <!-- Botón de regreso a home -->
-  <div class="regresar-home">
-    <button routerLink="/">Regresar a Home</button>
-  </div>
+
   <div class="nueva-especialidad">
-    <input [(ngModel)]="nuevaEspecialidad.descripcion" placeholder="Nombre de la nueva especialidad">
+    <input
+      [(ngModel)]="nuevaEspecialidad.descripcion"
+      placeholder="Nombre de la nueva especialidad"
+    />
     <button (click)="agregarEspecialidad()">Agregar Especialidad</button>
   </div>
   <table>
@@ -21,15 +21,28 @@
         <td>{{ especialidad.id }}</td>
         <td>{{ especialidad.descripcion }}</td>
         <td>
-          <button (click)="seleccionarEspecialidad(especialidad)">Editar</button>
-          <button (click)="eliminarEspecialidad(especialidad.id)">Eliminar</button>
+          <button (click)="seleccionarEspecialidad(especialidad)">
+            Editar
+          </button>
+          <button (click)="eliminarEspecialidad(especialidad.id)">
+            Eliminar
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- Botón de regreso a home -->
+  <div class="regresar-home">
+    <button routerLink="/">Regresar a Home</button>
+  </div>
+
   <div *ngIf="especialidadSeleccionada" class="editar-especialidad">
     <h3>Editar Especialidad</h3>
-    <input [(ngModel)]="especialidadSeleccionada.descripcion" placeholder="Nombre de la especialidad">
+    <input
+      [(ngModel)]="especialidadSeleccionada.descripcion"
+      placeholder="Nombre de la especialidad"
+    />
     <button (click)="actualizarEspecialidad()">Guardar Cambios</button>
     <button (click)="especialidadSeleccionada = null">Cancelar</button>
   </div>
