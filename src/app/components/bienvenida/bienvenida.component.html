@@ -42,8 +42,7 @@
         <div *ngIf="userRole === 'Operador'; else adminRoles" class="role-container">
           <button routerLink="/crear-usuario-operador">Registrar paciente</button>
           <button routerLink="/asignar-turno">Asignar turno</button>
-          <button routerLink="/ver-agenda-medico-operador">Ver agenda médica</button>
-          <button routerLink="/ver-pacientes-dia">Ver pacientes del día</button>
+          <button routerLink="/ver-agenda-medico-operador">Gestion agenda</button>
         </div>
 
         <ng-template #adminRoles>

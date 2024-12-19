@@ -16,6 +16,7 @@ import { GestionEspecialidadesComponent } from './components/administrador/gesti
 import { AsignarTurnosOperadorComponent } from './components/operador/aignar-turnos-operador/asignar-turnos-operador.component';
 import { VerAgendaOperadorComponent } from './components/operador/ver-agenda-operador/ver-agenda-operador.component';
 import { RoleGuard } from './guards/role.guard';
+import { CrearUsuarioOperadorComponent } from './components/operador/crear-usuario-operador/crear-usuario-operador.component';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent }, // Página pública
@@ -92,6 +93,12 @@ const routes: Routes = [
   { 
     path: 'ver-agenda-medico-operador',
     component: VerAgendaOperadorComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'Operador' }
+  },
+  { 
+    path: 'crear-usuario-operador',
+    component:CrearUsuarioOperadorComponent,
     canActivate: [AuthGuard, RoleGuard],
     data: { expectedRole: 'Operador' }
   },
